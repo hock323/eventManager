@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-preview-i18n-resource ../bundles/Bundle_en_EN.properties?>
+<?scenebuilder-stylesheet stilo.css?>
+
+<StackPane fx:id="blindPane" minHeight="0.0" minWidth="0.0" xmlns:fx="http://javafx.com/fxml" fx:controller="eventManager.controller.pokerTournament.BlindsController">
+  <children>
+    <StackPane id="BlindSelectedPane" fx:id="blindSelectedPane" cache="true" minHeight="372.0" prefHeight="412.0" StackPane.alignment="CENTER_LEFT">
+      <children>
+        <TableView id="blindTable" fx:id="blindStructTableView" editable="true" prefWidth="726.0" style="-fx-font-size: 14px;&#10;&#10;" StackPane.alignment="TOP_LEFT">
+          <columns>
+            <TableColumn editable="false" prefWidth="103.0" resizable="false" style="-fx-text-align: right;" text="%levelLabel.text" fx:id="level">
+              <maxWidth>
+                <Long fx:value="96" />
+              </maxWidth>
+            </TableColumn>
+            <TableColumn prefWidth="103.0" resizable="false" sortable="false" style="-fx-text-align: right;" text="%time.text" fx:id="time">
+              <maxWidth>
+                <Long fx:value="96" />
+              </maxWidth>
+            </TableColumn>
+            <TableColumn prefWidth="103.0" resizable="false" sortable="false" style="-fx-text-align: right;" text="Ante" fx:id="ante">
+              <maxWidth>
+                <Long fx:value="96" />
+              </maxWidth>
+            </TableColumn>
+            <TableColumn resizable="false" sortable="false" style="-fx-text-align: right;" text="%smallBlind.text" fx:id="sb">
+              <maxWidth>
+                <Long fx:value="96" />
+              </maxWidth>
+              <minWidth>
+                <Long fx:value="96" />
+              </minWidth>
+              <prefWidth>
+                <Long fx:value="96" />
+              </prefWidth>
+            </TableColumn>
+            <TableColumn sortable="false" style="-fx-text-align: right;" text="%bigBlind.text" fx:id="bb">
+              <maxWidth>
+                <Long fx:value="96" />
+              </maxWidth>
+              <minWidth>
+                <Long fx:value="96" />
+              </minWidth>
+              <prefWidth>
+                <Long fx:value="103" />
+              </prefWidth>
+            </TableColumn>
+            <TableColumn sortable="false" style="-fx-text-align: right;" text="%break.text" fx:id="breather">
+              <maxWidth>
+                <Long fx:value="195" />
+              </maxWidth>
+              <minWidth>
+                <Long fx:value="175" />
+              </minWidth>
+              <prefWidth>
+                <Long fx:value="182" />
+              </prefWidth>
+            </TableColumn>
+          </columns>
+          <maxHeight>
+            <Long fx:value="290" />
+          </maxHeight>
+          <maxWidth>
+            <Long fx:value="728" />
+          </maxWidth>
+          <prefHeight>
+            <Long fx:value="310" />
+          </prefHeight>
+          <StackPane.margin>
+            <Insets top="80.0" />
+          </StackPane.margin>
+        </TableView>
+        <VBox maxHeight="80.0" prefHeight="80.0" prefWidth="100.0" style="-fx-background-color: #014051;" StackPane.alignment="TOP_LEFT">
+          <children>
+            <HBox maxHeight="30.0" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="NEVER">
+              <children>
+                <Label alignment="CENTER_RIGHT" maxHeight="40.0" prefHeight="40.0" prefWidth="103.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: BOLD;" text="Level">
+                  <maxWidth>
+                    <Long fx:value="100" />
+                  </maxWidth>
+                </Label>
+                <Label alignment="CENTER_RIGHT" maxHeight="40.0" prefHeight="40.0" prefWidth="103.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: BOLD;" text="%duration.text">
+                  <maxWidth>
+                    <Long fx:value="100" />
+                  </maxWidth>
+                </Label>
+                <Label alignment="CENTER_RIGHT" maxHeight="40.0" prefWidth="103.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: BOLD;" text="Ante">
+                  <maxWidth>
+                    <Long fx:value="100" />
+                  </maxWidth>
+                </Label>
+                <Label alignment="CENTER_RIGHT" maxHeight="40.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: BOLD;" text="%smallBlind.text">
+                  <maxWidth>
+                    <Long fx:value="100" />
+                  </maxWidth>
+                  <minWidth>
+                    <Long fx:value="100" />
+                  </minWidth>
+                  <prefWidth>
+                    <Long fx:value="100" />
+                  </prefWidth>
+                </Label>
+                <Label alignment="CENTER_RIGHT" maxHeight="40.0" prefWidth="105.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: BOLD;" text="%bigBlind.text">
+                  <maxWidth>
+                    <Long fx:value="100" />
+                  </maxWidth>
+                  <minWidth>
+                    <Long fx:value="100" />
+                  </minWidth>
+                </Label>
+                <Label alignment="CENTER_RIGHT" maxHeight="40.0" prefHeight="24.0" prefWidth="119.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: BOLD;" text="%break.text">
+                  <maxWidth>
+                    <Long fx:value="120" />
+                  </maxWidth>
+                </Label>
+                <Label alignment="CENTER_RIGHT" maxHeight="40.0" maxWidth="110.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: BOLD;" text="Duration">
+                  <prefWidth>
+                    <Long fx:value="90" />
+                  </prefWidth>
+                </Label>
+              </children>
+              <maxWidth>
+                <Long fx:value="728" />
+              </maxWidth>
+            </HBox>
+            <HBox maxHeight="40.0" prefHeight="100.0" prefWidth="200.0">
+              <children>
+                <TextField fx:id="levelField" alignment="CENTER_RIGHT" disable="true" maxHeight="40.0" opacity="0.99" prefWidth="105.0" style="-fx-font-size: 16px;">
+                  <maxWidth>
+                    <Long fx:value="98" />
+                  </maxWidth>
+                  <minWidth>
+                    <Long fx:value="98" />
+                  </minWidth>
+                  <prefHeight>
+                    <Long fx:value="40" />
+                  </prefHeight>
+                  <HBox.margin>
+                    <Insets right="-2.0" fx:id="x1" />
+                  </HBox.margin>
+                </TextField>
+                <TextField fx:id="timeField" alignment="CENTER_RIGHT" maxHeight="40.0" prefWidth="105.0" style="-fx-font-size: 16px;" HBox.margin="$x1">
+                  <maxWidth>
+                    <Long fx:value="98" />
+                  </maxWidth>
+                  <minWidth>
+                    <Long fx:value="98" />
+                  </minWidth>
+                  <prefHeight>
+                    <Long fx:value="98" />
+                  </prefHeight>
+                </TextField>
+                <TextField id="levelField" fx:id="anteField" alignment="CENTER_RIGHT" maxHeight="40.0" prefWidth="105.0" style="-fx-font-size: 16px;" HBox.margin="$x1">
+                  <maxWidth>
+                    <Long fx:value="98" />
+                  </maxWidth>
+                  <minWidth>
+                    <Long fx:value="98" />
+                  </minWidth>
+                  <prefHeight>
+                    <Long fx:value="40" />
+                  </prefHeight>
+                </TextField>
+                <TextField id="timeField" fx:id="smallBlindField" alignment="CENTER_RIGHT" maxHeight="40.0" prefHeight="40.0" prefWidth="105.0" style="-fx-font-size: 16px;" HBox.margin="$x1">
+                  <maxWidth>
+                    <Long fx:value="98" />
+                  </maxWidth>
+                  <minWidth>
+                    <Long fx:value="98" />
+                  </minWidth>
+                </TextField>
+                <TextField id="levelField" fx:id="bigBlindField" alignment="CENTER_RIGHT" maxHeight="40.0" prefHeight="40.0" prefWidth="105.0" style="-fx-font-size: 16px;">
+                  <maxWidth>
+                    <Long fx:value="98" />
+                  </maxWidth>
+                  <minWidth>
+                    <Long fx:value="98" />
+                  </minWidth>
+                </TextField>
+                <ChoiceBox fx:id="breakTypeBox" prefHeight="40.0" prefWidth="221.0">
+                  <items>
+                    <FXCollections fx:factory="observableArrayList">
+                      <String fx:value="Item 1" />
+                      <String fx:value="Item 2" />
+                      <String fx:value="Item 3" />
+                    </FXCollections>
+                  </items>
+                  <maxWidth>
+                    <Long fx:value="120" />
+                  </maxWidth>
+                </ChoiceBox>
+                <TextField id="timeField" fx:id="breakDurationField" alignment="CENTER_RIGHT" disable="true" maxWidth="130.0" prefHeight="40.0" style="-fx-font-size: 16px;">
+                  <prefWidth>
+                    <Long fx:value="80" />
+                  </prefWidth>
+                </TextField>
+              </children>
+              <maxWidth>
+                <Long fx:value="728" />
+              </maxWidth>
+            </HBox>
+            <HBox maxHeight="30.0" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="NEVER">
+              <children>
+                <Label maxHeight="40.0" maxWidth="110.0" prefHeight="40.0" prefWidth="103.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: BOLD;" />
+                <Label alignment="CENTER_RIGHT" maxHeight="40.0" maxWidth="110.0" prefHeight="40.0" prefWidth="103.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: BOLD;" text="%minutes.text" />
+                <Label maxHeight="40.0" maxWidth="110.0" prefWidth="103.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: BOLD;" />
+                <Label maxHeight="40.0" maxWidth="110.0" prefWidth="103.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: BOLD;" />
+                <Label maxHeight="40.0" maxWidth="110.0" prefWidth="105.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: BOLD;" />
+                <Label maxHeight="40.0" maxWidth="110.0" prefWidth="105.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: BOLD;" />
+                <Label alignment="CENTER_RIGHT" maxHeight="40.0" maxWidth="110.0" prefWidth="105.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: BOLD;" text="%minutes.text" />
+              </children>
+              <maxWidth>
+                <Long fx:value="730" />
+              </maxWidth>
+            </HBox>
+          </children>
+          <maxWidth>
+            <Long fx:value="728" />
+          </maxWidth>
+          <StackPane.margin>
+            <Insets fx:id="x2" />
+          </StackPane.margin>
+        </VBox>
+        <HBox prefWidth="740.0" StackPane.alignment="BOTTOM_LEFT" StackPane.margin="$x2">
+          <children>
+            <Button id="deleteLevelButton" fx:id="addLevelButton" minHeight="20.0" mnemonicParsing="false" onAction="#addBlindLevelCommand" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" text="%addButton.text">
+              <minWidth>
+                <Long fx:value="96" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="96" />
+              </prefWidth>
+            </Button>
+            <Button id="deleteLevelButton" fx:id="clearTableButton" minHeight="20.0" mnemonicParsing="false" onAction="#clearBlindTable" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" text="%clear.text">
+              <minWidth>
+                <Long fx:value="96" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="96" />
+              </prefWidth>
+            </Button>
+            <Label id="fontLabel" fx:id="estimatedDurationLabel" prefWidth="156.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;" text="%estimatedDuration.text" textFill="WHITE">
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <HBox.margin>
+                <Insets left="96.0" />
+              </HBox.margin>
+            </Label>
+            <Label id="fontLabel" fx:id="durationLabel" contentDisplay="CENTER" prefWidth="52.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;&#10;" textFill="WHITE">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+            </Label>
+          </children>
+          <maxHeight>
+            <Long fx:value="40" />
+          </maxHeight>
+          <minHeight>
+            <Long fx:value="40" />
+          </minHeight>
+          <prefHeight>
+            <Long fx:value="40" />
+          </prefHeight>
+        </HBox>
+      </children>
+      <maxHeight>
+        <Long fx:value="412" />
+      </maxHeight>
+      <maxWidth>
+        <Long fx:value="680" />
+      </maxWidth>
+      <minWidth>
+        <Long fx:value="680" />
+      </minWidth>
+      <prefWidth>
+        <Long fx:value="680" />
+      </prefWidth>
+      <StackPane.margin>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+      </StackPane.margin>
+    </StackPane>
+    <VBox alignment="TOP_RIGHT" prefHeight="0.0" spacing="5.0" style="-fx-border-width: 0 0 0 2;&#10;-fx-border-color: white;" StackPane.alignment="CENTER_RIGHT">
+      <children>
+        <Label fx:id="loadBlindLabel" prefWidth="198.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;" text="%loadBlinds.text" />
+        <TableView fx:id="blindStructListView" prefHeight="218.0" prefWidth="208.0">
+          <columns>
+            <TableColumn editable="false" text="%name.text" fx:id="nameColumn">
+              <minWidth>
+                <Long fx:value="120" />
+              </minWidth>
+              <prefWidth>
+                <Long fx:value="133" />
+              </prefWidth>
+            </TableColumn>
+            <TableColumn resizable="false" text="%duration.text" fx:id="durationColumn">
+              <prefWidth>
+                <Long fx:value="60" />
+              </prefWidth>
+            </TableColumn>
+          </columns>
+        </TableView>
+        <Label prefWidth="198.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;" text="%saveBlinds.text">
+          <VBox.margin>
+            <Insets fx:id="x3" />
+          </VBox.margin>
+        </Label>
+        <ComboBox fx:id="saveBlindBox" editable="true" focusTraversable="false" visibleRowCount="4" VBox.margin="$x2">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="Item 1" />
+              <String fx:value="Item 2" />
+              <String fx:value="Item 3" />
+            </FXCollections>
+          </items>
+          <prefHeight>
+            <Long fx:value="40" />
+          </prefHeight>
+          <prefWidth>
+            <Long fx:value="330" />
+          </prefWidth>
+        </ComboBox>
+        <Button id="green" fx:id="saveBlindsButton" contentDisplay="CENTER" minHeight="23.7" mnemonicParsing="false" onAction="#saveBlindStruct" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefHeight="40.0" prefWidth="208.0" style="-fx-padding: 0px -5px 0px -5px;" text="%saveButton.text">
+          <maxHeight>
+            <Long fx:value="40" />
+          </maxHeight>
+          <maxWidth>
+            <Long fx:value="96" />
+          </maxWidth>
+        </Button>
+      </children>
+      <maxWidth>
+        <Long fx:value="230" />
+      </maxWidth>
+      <padding>
+        <Insets left="30.0" />
+      </padding>
+      <prefWidth>
+        <Long fx:value="230" />
+      </prefWidth>
+      <StackPane.margin>
+        <Insets bottom="30.0" right="30.0" top="30.0" />
+      </StackPane.margin>
+    </VBox>
+  </children>
+  <prefHeight>
+    <Long fx:value="472" />
+  </prefHeight>
+  <prefWidth>
+    <Long fx:value="1000" />
+  </prefWidth>
+</StackPane>

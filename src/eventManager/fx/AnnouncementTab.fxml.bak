@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-preview-i18n-resource ../bundles/Bundle_en_EN.properties?>
+<?scenebuilder-stylesheet stilo.css?>
+
+<StackPane id="StackPane" minHeight="0.0" minWidth="0.0" xmlns:fx="http://javafx.com/fxml" fx:controller="eventManager.controller.pokerTournament.AnnouncementsController">
+  <children>
+    <TableView id="announcementTableColumn" fx:id="announcementTableView" editable="true" prefHeight="200.0" prefWidth="660.0" style="-fx-font-size: 16px;" StackPane.alignment="CENTER_LEFT">
+      <columns>
+        <TableColumn text="%announcement.text" fx:id="announcement">
+          <prefWidth>
+            <Long fx:value="490" />
+          </prefWidth>
+        </TableColumn>
+        <TableColumn resizable="false" text="%active.text" fx:id="activeTableColumn">
+          <prefWidth>
+            <Long fx:value="65" />
+          </prefWidth>
+        </TableColumn>
+        <TableColumn text="%highLight.text" fx:id="highlightTableColumn">
+          <prefWidth>
+            <Long fx:value="90" />
+          </prefWidth>
+        </TableColumn>
+      </columns>
+      <maxHeight>
+        <Long fx:value="200" />
+      </maxHeight>
+      <maxWidth>
+        <Long fx:value="660" />
+      </maxWidth>
+      <StackPane.margin>
+        <Insets left="30.0" fx:id="x9" />
+      </StackPane.margin>
+    </TableView>
+    <TextField id="fontLabel" fx:id="noticeTextField" prefHeight="35.0" style="-fx-font-size: 18px;" StackPane.alignment="TOP_LEFT">
+      <maxWidth>
+        <Long fx:value="490" />
+      </maxWidth>
+      <prefWidth>
+        <Long fx:value="490" />
+      </prefWidth>
+      <StackPane.margin>
+        <Insets left="30.0" top="100.0" />
+      </StackPane.margin>
+    </TextField>
+    <VBox id="VBox" alignment="TOP_RIGHT" spacing="5.0" style="-fx-border-width: 0 0 0 2;&#10;-fx-border-color: white;" StackPane.alignment="TOP_RIGHT">
+      <children>
+        <Label text="%loadAnnouncements.text" />
+        <ListView fx:id="announcementList" prefHeight="200.0" prefWidth="200.0" />
+        <HBox id="HBox" alignment="TOP_RIGHT" spacing="5.0">
+          <children>
+            <Button id="playButton" fx:id="soundGeneralButton" cache="true" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#soundAllowCommand" text="true" textAlignment="CENTER">
+              <graphicTextGap>
+                <Long fx:value="0" />
+              </graphicTextGap>
+              <maxHeight>
+                <Long fx:value="24" />
+              </maxHeight>
+              <maxWidth>
+                <Long fx:value="24" />
+              </maxWidth>
+              <minHeight>
+                <Long fx:value="40" />
+              </minHeight>
+              <minWidth>
+                <Long fx:value="40" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="24" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="24" />
+              </prefWidth>
+              <rotationAxis>
+                <Point3D z="100.0" />
+              </rotationAxis>
+              <scaleX>
+                <Long fx:value="1" />
+              </scaleX>
+              <translateX>
+                <Long fx:value="0" />
+              </translateX>
+              <translateY>
+                <Long fx:value="0" />
+              </translateY>
+              <translateZ>
+                <Long fx:value="0" />
+              </translateZ>
+            </Button>
+            <Label text="Sound Alerts">
+              <minHeight>
+                <Long fx:value="40" />
+              </minHeight>
+              <minWidth>
+                <Long fx:value="40" />
+              </minWidth>
+            </Label>
+          </children>
+          <minHeight>
+            <Long fx:value="40" />
+          </minHeight>
+        </HBox>
+        <HBox id="HBox" alignment="TOP_RIGHT" spacing="5.0">
+          <children>
+            <Label id="fontLabel" fx:id="alert1Label" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;" text="%alert1.text" textFill="WHITE">
+              <minHeight>
+                <Long fx:value="40" />
+              </minHeight>
+            </Label>
+            <TextField id="fontLabel" fx:id="alert1Field" alignment="CENTER" prefColumnCount="2" prefHeight="23.0" prefWidth="39.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;">
+              <maxHeight>
+                <Long fx:value="30" />
+              </maxHeight>
+              <minHeight>
+                <Long fx:value="40" />
+              </minHeight>
+            </TextField>
+          </children>
+          <minHeight>
+            <Long fx:value="40" />
+          </minHeight>
+          <minWidth>
+            <Long fx:value="-1" />
+          </minWidth>
+        </HBox>
+        <HBox id="HBox" alignment="CENTER_RIGHT" spacing="5.0">
+          <children>
+            <Label id="fontLabel" fx:id="alert2Label" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;" text="%alert2.text" textFill="WHITE">
+              <minHeight>
+                <Long fx:value="40" />
+              </minHeight>
+            </Label>
+            <TextField id="fontLabel" fx:id="alert2Field" alignment="CENTER" prefColumnCount="2" prefHeight="25.0" prefWidth="39.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;" text="2">
+              <maxHeight>
+                <Long fx:value="30" />
+              </maxHeight>
+              <minHeight>
+                <Long fx:value="40" />
+              </minHeight>
+            </TextField>
+          </children>
+          <minHeight>
+            <Long fx:value="40" />
+          </minHeight>
+        </HBox>
+      </children>
+      <maxWidth>
+        <Long fx:value="230" />
+      </maxWidth>
+      <minWidth>
+        <Long fx:value="230" />
+      </minWidth>
+      <padding>
+        <Insets left="30.0" fx:id="x12" />
+      </padding>
+      <prefWidth>
+        <Long fx:value="230" />
+      </prefWidth>
+      <StackPane.margin>
+        <Insets bottom="30.0" right="30.0" top="30.0" />
+      </StackPane.margin>
+    </VBox>
+    <Button id="green" fx:id="publishNoticeButton" focusTraversable="false" mnemonicParsing="false" onAction="#publishNoticeCommand" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefHeight="35.0" prefWidth="170.0" text="%saveButton.text" textAlignment="CENTER" textFill="WHITE" StackPane.alignment="TOP_LEFT">
+      <graphicTextGap>
+        <Long fx:value="4" />
+      </graphicTextGap>
+      <StackPane.margin>
+        <Insets left="520.0" top="100.0" />
+      </StackPane.margin>
+    </Button>
+    <Label style="-fx-font-size: 32 px;" text="%announcementsTab.text" StackPane.alignment="TOP_LEFT">
+      <StackPane.margin>
+        <Insets left="30.0" top="30.0" />
+      </StackPane.margin>
+    </Label>
+  </children>
+  <prefHeight>
+    <Long fx:value="472" />
+  </prefHeight>
+  <prefWidth>
+    <Long fx:value="1000" />
+  </prefWidth>
+</StackPane>
