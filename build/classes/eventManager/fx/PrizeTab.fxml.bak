@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-preview-i18n-resource ../bundles/Bundle_en_EN.properties?>
+<?scenebuilder-stylesheet stilo.css?>
+
+<StackPane fx:id="prizesStackPane" minHeight="0.0" minWidth="0.0" xmlns:fx="http://javafx.com/fxml" fx:controller="eventManager.controller.pokerTournament.PrizesController">
+  <children>
+    <StackPane id="prizeSelectedPane" fx:id="prizeTablePane" alignment="CENTER_LEFT" StackPane.alignment="CENTER_LEFT">
+      <children>
+        <TableView id="blindTable" fx:id="prizeStructTableView" editable="true" focusTraversable="false" prefWidth="310.0" style="-fx-font-size: 14px;&#10;" StackPane.alignment="BOTTOM_LEFT">
+          <columns>
+            <TableColumn editable="false" resizable="false" sortable="false" text="Pos" fx:id="positionTableColumn">
+              <maxWidth>
+                <Long fx:value="55" />
+              </maxWidth>
+              <minWidth>
+                <Long fx:value="50" />
+              </minWidth>
+              <prefWidth>
+                <Long fx:value="50" />
+              </prefWidth>
+            </TableColumn>
+            <TableColumn resizable="false" sortable="false" text="\%" fx:id="relPercentageTableColumn">
+              <maxWidth>
+                <Long fx:value="65" />
+              </maxWidth>
+              <minWidth>
+                <Long fx:value="0" />
+              </minWidth>
+              <prefWidth>
+                <Long fx:value="67" />
+              </prefWidth>
+            </TableColumn>
+            <TableColumn resizable="false" sortable="false" text="\%" fx:id="absPercentageTableColumn">
+              <maxWidth>
+                <Long fx:value="55" />
+              </maxWidth>
+              <minWidth>
+                <Long fx:value="45" />
+              </minWidth>
+              <prefWidth>
+                <Long fx:value="55" />
+              </prefWidth>
+            </TableColumn>
+            <TableColumn resizable="false" sortable="false" text="%prize.text" fx:id="prizeTableColumn">
+              <maxWidth>
+                <Long fx:value="190" />
+              </maxWidth>
+              <minWidth>
+                <Long fx:value="100" />
+              </minWidth>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </TableColumn>
+          </columns>
+          <maxHeight>
+            <Long fx:value="350" />
+          </maxHeight>
+          <maxWidth>
+            <Long fx:value="310" />
+          </maxWidth>
+          <prefHeight>
+            <Long fx:value="350" />
+          </prefHeight>
+          <StackPane.margin>
+            <Insets right="30.0" top="40.0" />
+          </StackPane.margin>
+        </TableView>
+        <HBox id="HBox" fx:id="editTableViewPane" StackPane.alignment="TOP_LEFT">
+          <children>
+            <TextField id="fontLabel" fx:id="addPrizePos" alignment="CENTER" prefColumnCount="2" promptText="Pos" style="&#10;-fx-font-size: 14px;">
+              <maxWidth>
+                <Long fx:value="56" />
+              </maxWidth>
+              <minWidth>
+                <Long fx:value="50" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="50" />
+              </prefWidth>
+            </TextField>
+            <TextField id="fontLabel" fx:id="addPrizeRel" alignment="CENTER" maxWidth="74.0" prefHeight="40.0" promptText="\%" style="&#10;-fx-font-size: 18px;">
+              <minWidth>
+                <Long fx:value="65" />
+              </minWidth>
+              <prefWidth>
+                <Long fx:value="65" />
+              </prefWidth>
+            </TextField>
+            <Button id="green" fx:id="addPrizePosition" contentDisplay="CENTER" maxWidth="210.0" mnemonicParsing="false" onAction="#addPrizePosition" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefHeight="40.0" prefWidth="197.99990000000253" style="-fx-padding: 0px -5px 0px -5px;" text="%addButton.text">
+              <minWidth>
+                <Long fx:value="150" />
+              </minWidth>
+            </Button>
+          </children>
+          <maxHeight>
+            <Long fx:value="40" />
+          </maxHeight>
+          <maxWidth>
+            <Long fx:value="310" />
+          </maxWidth>
+          <spacing>
+            <Long fx:value="0" />
+          </spacing>
+          <StackPane.margin>
+            <Insets />
+          </StackPane.margin>
+        </HBox>
+        <AnchorPane id="AnchorPane" fx:id="totalPrizesPane" minHeight="40.0" prefWidth="310.0" visible="false" StackPane.alignment="BOTTOM_LEFT">
+          <children>
+            <Label id="fontLabel" fx:id="totalPercentages" layoutY="21.0" prefWidth="143.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14px;" text="%totalPercentages.text" textFill="WHITE">
+              <prefHeight>
+                <Long fx:value="20" />
+              </prefHeight>
+            </Label>
+            <Label id="fontLabel" fx:id="totalPercentagesLabel" alignment="CENTER_RIGHT" layoutX="203.0" layoutY="21.0" prefWidth="107.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 16;" text="0" textFill="WHITE">
+              <prefHeight>
+                <Long fx:value="20" />
+              </prefHeight>
+            </Label>
+            <Label id="fontLabel" fx:id="totalPrizesLabel" alignment="CENTER_RIGHT" layoutX="164.0" prefWidth="146.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 16;" text="0" textFill="WHITE">
+              <prefHeight>
+                <Long fx:value="20" />
+              </prefHeight>
+            </Label>
+            <Label id="fontLabel" fx:id="totalPrizes" layoutY="1.0" prefWidth="121.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14px;" text="%totalPrizes.text" textFill="WHITE">
+              <prefHeight>
+                <Long fx:value="20" />
+              </prefHeight>
+            </Label>
+          </children>
+          <maxHeight>
+            <Long fx:value="40" />
+          </maxHeight>
+          <maxWidth>
+            <Long fx:value="310" />
+          </maxWidth>
+          <prefHeight>
+            <Long fx:value="40" />
+          </prefHeight>
+        </AnchorPane>
+      </children>
+      <maxWidth>
+        <Long fx:value="340" />
+      </maxWidth>
+      <prefHeight>
+        <Long fx:value="340" />
+      </prefHeight>
+      <prefWidth>
+        <Long fx:value="680" />
+      </prefWidth>
+      <StackPane.margin>
+        <Insets bottom="30.0" left="360.0" top="74.0" />
+      </StackPane.margin>
+    </StackPane>
+    <StackPane fx:id="chopsPane" prefWidth="389.0" visible="false" StackPane.alignment="CENTER_LEFT">
+      <children>
+        <HBox prefHeight="100.0" prefWidth="200.0" StackPane.alignment="TOP_LEFT">
+          <children>
+            <TextField id="fontLabel" fx:id="chopChipsField" alignment="CENTER" pickOnBounds="true" promptText="%chips.text" style="-fx-font-size: 18px;">
+              <maxWidth>
+                <Long fx:value="100" />
+              </maxWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="100" />
+              </prefWidth>
+              <HBox.margin>
+                <Insets left="40.0" />
+              </HBox.margin>
+            </TextField>
+            <Button id="green" fx:id="addChipsButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addChopPrize" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefHeight="40.0" prefWidth="160.0" style="-fx-padding: 0px -5px 0px -5px;" text="%addButton.text" HBox.hgrow="NEVER">
+              <maxWidth>
+                <Long fx:value="-1" />
+              </maxWidth>
+            </Button>
+          </children>
+          <maxHeight>
+            <Long fx:value="40" />
+          </maxHeight>
+          <maxWidth>
+            <Long fx:value="300" />
+          </maxWidth>
+        </HBox>
+        <TableView fx:id="chopsTableView" prefHeight="292.0" prefWidth="300.0" style="-fx-font-size: 14px;" StackPane.alignment="TOP_LEFT">
+          <columns>
+            <TableColumn resizable="false" text="Pos" fx:id="chopPositionTableClumn">
+              <maxWidth>
+                <Long fx:value="65" />
+              </maxWidth>
+              <prefWidth>
+                <Long fx:value="40" />
+              </prefWidth>
+            </TableColumn>
+            <TableColumn resizable="false" text="%chips.text" fx:id="chopChipsTableColumn">
+              <maxWidth>
+                <Long fx:value="98" />
+              </maxWidth>
+              <minWidth>
+                <Long fx:value="98" />
+              </minWidth>
+              <prefWidth>
+                <Long fx:value="98" />
+              </prefWidth>
+            </TableColumn>
+            <TableColumn resizable="false" text="ICM" fx:id="icmTableColumn">
+              <prefWidth>
+                <Long fx:value="80" />
+              </prefWidth>
+            </TableColumn>
+            <TableColumn resizable="false" text="Simple" fx:id="simpleTableColumn">
+              <maxWidth>
+                <Long fx:value="80" />
+              </maxWidth>
+              <minWidth>
+                <Long fx:value="77" />
+              </minWidth>
+              <prefWidth>
+                <Long fx:value="80" />
+              </prefWidth>
+            </TableColumn>
+          </columns>
+          <maxHeight>
+            <Long fx:value="500" />
+          </maxHeight>
+          <maxWidth>
+            <Long fx:value="300" />
+          </maxWidth>
+          <StackPane.margin>
+            <Insets bottom="40.0" top="50.0" />
+          </StackPane.margin>
+        </TableView>
+        <HBox prefHeight="100.0" prefWidth="200.0" StackPane.alignment="BOTTOM_LEFT">
+          <children>
+            <Label id="fontLabel" fx:id="totalChips" prefWidth="100.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14px;" text="%totalChips.text" textFill="WHITE">
+              <maxHeight>
+                <Long fx:value="20" />
+              </maxHeight>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+            </Label>
+            <Label id="fontLabel" fx:id="countedChipsLabel" alignment="CENTER_RIGHT" prefWidth="82.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14px;" text="0" textFill="WHITE">
+              <maxHeight>
+                <Long fx:value="20" />
+              </maxHeight>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+            </Label>
+            <Label id="fontLabel" prefWidth="9.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14px;" text="/" textFill="WHITE">
+              <maxHeight>
+                <Long fx:value="20" />
+              </maxHeight>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+            </Label>
+            <Label id="fontLabel" fx:id="totalChipsLabel" prefHeight="40.0" prefWidth="107.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14px;" text="0" textFill="WHITE" HBox.hgrow="ALWAYS">
+              <maxHeight>
+                <Long fx:value="20" />
+              </maxHeight>
+            </Label>
+          </children>
+          <maxHeight>
+            <Long fx:value="40" />
+          </maxHeight>
+          <StackPane.margin>
+            <Insets />
+          </StackPane.margin>
+        </HBox>
+      </children>
+      <maxHeight>
+        <Long fx:value="412" />
+      </maxHeight>
+      <maxWidth>
+        <Long fx:value="300" />
+      </maxWidth>
+      <prefHeight>
+        <Long fx:value="412" />
+      </prefHeight>
+      <StackPane.margin>
+        <Insets bottom="30.0" left="370.0" top="30.0" />
+      </StackPane.margin>
+    </StackPane>
+    <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" style="-fx-border-width: 0 0 0 2;&#10;-fx-border-color: white;" StackPane.alignment="TOP_RIGHT">
+      <children>
+        <Label alignment="CENTER_RIGHT" text="%savePrizes.text">
+          <labelFor>
+            <ComboBox fx:id="savePrizeBox" editable="true" prefHeight="40.0" prefWidth="208.0" visibleRowCount="4">
+              <items>
+                <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="Item 1" />
+                  <String fx:value="Item 2" />
+                  <String fx:value="Item 3" />
+                </FXCollections>
+              </items>
+              <minHeight>
+                <Long fx:value="40" />
+              </minHeight>
+              <minWidth>
+                <Long fx:value="170" />
+              </minWidth>
+            </ComboBox>
+          </labelFor>
+          <minWidth>
+            <Long fx:value="170" />
+          </minWidth>
+        </Label>
+        <fx:reference source="savePrizeBox" />
+        <Button id="green" fx:id="savePrizes" contentDisplay="CENTER" mnemonicParsing="false" onAction="#savePrizeStruct" onDragEntered="#mouseEntered" onDragExited="#mouseExited" prefHeight="40.0" text="%saveButton.text" VBox.vgrow="NEVER">
+          <maxWidth>
+            <Long fx:value="96" />
+          </maxWidth>
+          <minHeight>
+            <Long fx:value="40" />
+          </minHeight>
+          <minWidth>
+            <Long fx:value="96" />
+          </minWidth>
+          <prefWidth>
+            <Long fx:value="96" />
+          </prefWidth>
+        </Button>
+        <Button fx:id="chopsButton" mnemonicParsing="false" onAction="#showHideChops" onDragEntered="#mouseEntered" onDragExited="#mouseExited" prefHeight="40.0" prefWidth="208.0" text="%showChops.text" visible="false">
+          <minHeight>
+            <Long fx:value="40" />
+          </minHeight>
+          <minWidth>
+            <Long fx:value="170" />
+          </minWidth>
+        </Button>
+      </children>
+      <maxWidth>
+        <Long fx:value="230" />
+      </maxWidth>
+      <padding>
+        <Insets left="30.0" />
+      </padding>
+      <spacing>
+        <Long fx:value="5" />
+      </spacing>
+      <StackPane.margin>
+        <Insets bottom="30.0" right="30.0" top="30.0" />
+      </StackPane.margin>
+    </VBox>
+    <StackPane fx:id="editPrizesPane" alignment="TOP_LEFT" prefHeight="150.0" prefWidth="200.0" StackPane.alignment="TOP_LEFT">
+      <children>
+        <VBox id="VBox" alignment="TOP_RIGHT" StackPane.alignment="TOP_RIGHT">
+          <children>
+            <Label text="%loadPrizes.text" VBox.vgrow="NEVER">
+              <minHeight>
+                <Long fx:value="40" />
+              </minHeight>
+              <prefHeight>
+                <Long fx:value="30" />
+              </prefHeight>
+            </Label>
+            <ListView id="fontLabel" fx:id="prizeStructListView" style="-fx-font-size: 14px;">
+              <maxHeight>
+                <Long fx:value="150" />
+              </maxHeight>
+              <prefHeight>
+                <Long fx:value="200" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="300" />
+              </prefWidth>
+            </ListView>
+            <StackPane fx:id="prizesConfPane" maxHeight="166.0" maxWidth="300.0" prefHeight="166.0" prefWidth="300.0">
+              <children>
+                <Pane fx:id="customPrizesPane" visible="false">
+                  <children>
+                    <TextField id="fontLabel" fx:id="j" alignment="CENTER" layoutY="48.0" prefHeight="25.0" prefWidth="34.0" style="-fx-font-size: 18px;" />
+                    <TextField id="fontLabel" fx:id="m" alignment="CENTER" layoutX="47.0" layoutY="48.0" prefHeight="25.0" prefWidth="34.0" style="&#10;-fx-font-size: 18px;" />
+                    <TextField id="fontLabel" fx:id="c" alignment="CENTER" layoutX="202.0" layoutY="48.0" prefHeight="25.0" prefWidth="48.0" style="&#10;-fx-font-size: 18px;" />
+                    <Label id="fontLabel" alignment="CENTER" layoutX="32.0" layoutY="48.0" prefHeight="25.0" prefWidth="17.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 16;" text="/" textFill="WHITE" />
+                    <TextField id="fontLabel" fx:id="customPercentage" alignment="CENTER" layoutY="100.0" prefHeight="25.0" prefWidth="48.0" style="-fx-font-size: 18px;" />
+                    <Label id="fontLabel" alignment="CENTER" layoutX="49.0" layoutY="100.0" prefHeight="25.0" prefWidth="25.0000084472631" style="-fx-font-weight: bold;&#10;-fx-font-size: 16;" text="\%" textFill="WHITE" />
+                    <ChoiceBox fx:id="customChoice" layoutX="87.0" layoutY="48.0" prefWidth="110.0">
+                      <items>
+                        <FXCollections fx:factory="observableArrayList">
+                          <String fx:value="Item 1" />
+                          <String fx:value="Item 2" />
+                          <String fx:value="Item 3" />
+                        </FXCollections>
+                      </items>
+                    </ChoiceBox>
+                    <Label id="fontLabel" prefWidth="200.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 16;" text="%customPrizes.text" textFill="WHITE">
+                      <prefHeight>
+                        <Long fx:value="40" />
+                      </prefHeight>
+                    </Label>
+                  </children>
+                  <maxHeight>
+                    <Long fx:value="300" />
+                  </maxHeight>
+                  <prefHeight>
+                    <Long fx:value="185" />
+                  </prefHeight>
+                  <prefWidth>
+                    <Long fx:value="250" />
+                  </prefWidth>
+                </Pane>
+                <Pane id="satelitePanel" fx:id="satelitePane" maxWidth="250.0" prefHeight="150.0" visible="false" StackPane.alignment="TOP_LEFT">
+                  <children>
+                    <Label id="fontLabel" prefWidth="154.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14px;" text="%sateliteTournament.text" textFill="WHITE">
+                      <prefHeight>
+                        <Long fx:value="40" />
+                      </prefHeight>
+                    </Label>
+                    <Label id="fontLabel" layoutX="14.0" layoutY="32.0" prefHeight="25.0" prefWidth="96.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14px;" text="%packagesOf.text" textFill="WHITE" />
+                    <Label id="fontLabel" layoutX="14.0" layoutY="61.0" prefHeight="25.0" prefWidth="46.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14px;" text="%remainder.text" textFill="WHITE" />
+                    <Label id="fontLabel" layoutX="162.0" layoutY="32.0" prefHeight="25.0" prefWidth="25.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 16;" text="%euro.text" textFill="WHITE" />
+                    <Label id="fontLabel" layoutX="87.0" layoutY="61.0" prefHeight="25.0" prefWidth="82.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14px;" text="%onePackage.text" textFill="WHITE" />
+                    <Label id="fontLabel" layoutX="87.0" layoutY="89.0" prefHeight="25.000099999997474" prefWidth="96.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14px;" text="%packagesOf.text" textFill="WHITE" />
+                    <TextField id="fontLabel" fx:id="packagesField" layoutX="106.0" layoutY="32.0" prefHeight="25.0" prefWidth="53.0" style="-fx-font-weight: bold;" />
+                    <TextField id="fontLabel" fx:id="subpackagesField" disable="true" layoutX="180.0" layoutY="89.0" prefHeight="25.0" prefWidth="53.0" style="-fx-font-weight: bold;" />
+                    <Label id="fontLabel" layoutX="242.0" layoutY="89.0" prefHeight="25.0" prefWidth="18.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 16;" text="%euro.text" textFill="WHITE" />
+                    <RadioButton fx:id="onePackage" layoutX="62.0" layoutY="63.0" mnemonicParsing="false" onAction="#customPackageOption" prefWidth="18.0" selected="true" style="-fx-font-weight: bold;&#10;-fx-font-size: 16;" text="onePackage">
+                      <graphicTextGap>
+                        <Long fx:value="0" />
+                      </graphicTextGap>
+                      <toggleGroup>
+                        <ToggleGroup fx:id="satelite" />
+                      </toggleGroup>
+                    </RadioButton>
+                    <RadioButton fx:id="varPackages" layoutX="62.0" layoutY="91.0" mnemonicParsing="false" onAction="#customPackageOption" prefWidth="18.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 16;" text="varPackages" toggleGroup="$satelite" />
+                  </children>
+                  <maxHeight>
+                    <Long fx:value="300" />
+                  </maxHeight>
+                  <minWidth>
+                    <Long fx:value="300" />
+                  </minWidth>
+                  <prefWidth>
+                    <Long fx:value="300" />
+                  </prefWidth>
+                </Pane>
+                <Button fx:id="selectPrizeButton" mnemonicParsing="false" onAction="#selectPrizesCommand" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" style="-fx-padding: 0px -5px 0px -5px" text="%load.text" visible="false" StackPane.alignment="BOTTOM_RIGHT">
+                  <minHeight>
+                    <Long fx:value="40" />
+                  </minHeight>
+                  <prefHeight>
+                    <Long fx:value="40" />
+                  </prefHeight>
+                  <prefWidth>
+                    <Long fx:value="96" />
+                  </prefWidth>
+                </Button>
+              </children>
+            </StackPane>
+          </children>
+          <spacing>
+            <Long fx:value="0" />
+          </spacing>
+        </VBox>
+      </children>
+      <maxHeight>
+        <Long fx:value="450" />
+      </maxHeight>
+      <maxWidth>
+        <Long fx:value="300" />
+      </maxWidth>
+      <StackPane.margin>
+        <Insets bottom="30.0" left="30.0" top="74.0" />
+      </StackPane.margin>
+    </StackPane>
+    <Label style="-fx-font-size: 32px;" text="%prizesTab.text" StackPane.alignment="TOP_LEFT">
+      <StackPane.margin>
+        <Insets left="30.0" top="30.0" />
+      </StackPane.margin>
+    </Label>
+  </children>
+  <layoutY>
+    <Long fx:value="0" />
+  </layoutY>
+  <prefHeight>
+    <Long fx:value="472" />
+  </prefHeight>
+  <prefWidth>
+    <Long fx:value="1000" />
+  </prefWidth>
+</StackPane>

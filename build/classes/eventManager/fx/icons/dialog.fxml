@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns:fx="http://javafx.com/fxml">
+  <children>
+    <ListView id="tournamentListView" fx:id="tournamentConfigurationListView" layoutX="-3.0" layoutY="-2.0" prefHeight="197.00009999999747" prefWidth="479.0" />
+    <Button fx:id="selectConfiguration" layoutX="346.0" layoutY="205.0" mnemonicParsing="false" text="Select">
+      <prefWidth>
+        <Long fx:value="100" />
+      </prefWidth>
+    </Button>
+  </children>
+</AnchorPane>

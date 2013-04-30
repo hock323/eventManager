@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<prizeStruct>
+    <numPlayer>1000</numPlayer>
+    <percentagesTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="prizePosition">
+        <absPercentage>0.0</absPercentage>
+        <money>0.0</money>
+        <position>1</position>
+        <relPercentage>0.0</relPercentage>
+    </percentagesTable>
+    <percentagesTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="prizePosition">
+        <absPercentage>19.0</absPercentage>
+        <money>0.0</money>
+        <position>2</position>
+        <relPercentage>2.0</relPercentage>
+    </percentagesTable>
+    <percentagesTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="prizePosition">
+        <absPercentage>19.0</absPercentage>
+        <money>0.0</money>
+        <position>3</position>
+        <relPercentage>3.0</relPercentage>
+    </percentagesTable>
+    <percentagesTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="prizePosition">
+        <absPercentage>19.0</absPercentage>
+        <money>0.0</money>
+        <position>4</position>
+        <relPercentage>4.0</relPercentage>
+    </percentagesTable>
+    <percentagesTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="prizePosition">
+        <absPercentage>19.0</absPercentage>
+        <money>0.0</money>
+        <position>5</position>
+        <relPercentage>4.0</relPercentage>
+    </percentagesTable>
+    <percentagesTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="prizePosition">
+        <absPercentage>19.0</absPercentage>
+        <money>0.0</money>
+        <position>6</position>
+        <relPercentage>5.0</relPercentage>
+    </percentagesTable>
+    <percentagesTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="prizePosition">
+        <absPercentage>19.0</absPercentage>
+        <money>0.0</money>
+        <position>7</position>
+        <relPercentage>6.0</relPercentage>
+    </percentagesTable>
+    <percentagesTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="prizePosition">
+        <absPercentage>19.0</absPercentage>
+        <money>0.0</money>
+        <position>8</position>
+        <relPercentage>7.0</relPercentage>
+    </percentagesTable>
+    <playersWhoReceive>10</playersWhoReceive>
+    <prizeTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="prizePosition">
+        <absPercentage>0.0</absPercentage>
+        <money>0.0</money>
+        <position>1</position>
+        <relPercentage>0.0</relPercentage>
+    </prizeTable>
+    <prizeTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="prizePosition">
+        <absPercentage>19.0</absPercentage>
+        <money>0.0</money>
+        <position>2</position>
+        <relPercentage>2.0</relPercentage>
+    </prizeTable>
+    <prizeTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="prizePosition">
+        <absPercentage>19.0</absPercentage>
+        <money>0.0</money>
+        <position>3</position>
+        <relPercentage>3.0</relPercentage>
+    </prizeTable>
+    <prizeTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="prizePosition">
+        <absPercentage>19.0</absPercentage>
+        <money>0.0</money>
+        <position>4</position>
+        <relPercentage>4.0</relPercentage>
+    </prizeTable>
+    <prizeTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="prizePosition">
+        <absPercentage>19.0</absPercentage>
+        <money>0.0</money>
+        <position>5</position>
+        <relPercentage>4.0</relPercentage>
+    </prizeTable>
+    <prizeTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="prizePosition">
+        <absPercentage>19.0</absPercentage>
+        <money>0.0</money>
+        <position>6</position>
+        <relPercentage>5.0</relPercentage>
+    </prizeTable>
+    <prizeTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="prizePosition">
+        <absPercentage>19.0</absPercentage>
+        <money>0.0</money>
+        <position>7</position>
+        <relPercentage>6.0</relPercentage>
+    </prizeTable>
+    <prizeTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="prizePosition">
+        <absPercentage>19.0</absPercentage>
+        <money>0.0</money>
+        <position>8</position>
+        <relPercentage>7.0</relPercentage>
+    </prizeTable>
+</prizeStruct>

@@ -1,0 +1,920 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-preview-i18n-resource ../bundles/Bundle_en_EN.properties?>
+<?scenebuilder-stylesheet stilo.css?>
+
+<AnchorPane fx:id="primePane" minHeight="0.0" minWidth="0.0" xmlns:fx="http://javafx.com/fxml" fx:controller="eventManager.controller.pokerTournament.TournamentController">
+  <children>
+    <StackPane id="controlsPane" fx:id="controlPane" layoutX="1.0" maxHeight="163.0" prefHeight="163.0" style="-fx-font-family: Exo;&#10;-fx-background-color: #014051;&#10;" visible="false">
+      <children>
+        <HBox id="HBox" alignment="CENTER_LEFT" prefHeight="123.0" prefWidth="1000.0" spacing="5.0" StackPane.alignment="TOP_LEFT">
+          <children>
+            <VBox id="VBox" fx:id="registeredPane" onMouseEntered="#controlPaneFadeOn" onMouseExited="#controlPaneFadeOff">
+              <children>
+                <Label id="fontLabel" fx:id="registeredLabel" alignment="CENTER" contentDisplay="CENTER" style="-fx-font-size: 18px;&#10;-fx-font-weight: bold;&#10;-fx-text-fill:white;" text="%registeredPlayers.text" textFill="$null">
+                  <font>
+                    <Font name="System Bold" size="16.0" fx:id="x7" />
+                  </font>
+                  <graphicTextGap>
+                    <Long fx:value="4" />
+                  </graphicTextGap>
+                  <prefHeight>
+                    <Long fx:value="25" />
+                  </prefHeight>
+                  <prefWidth>
+                    <Long fx:value="100" />
+                  </prefWidth>
+                </Label>
+                <Label id="fontLabel" fx:id="registeredPlayersLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="50.0" prefHeight="50.0" prefWidth="100.0" style="-fx-font-size: 50px;&#10;-fx-font-weight: bold;&#10;-fx-text-fill: white;&#10;-fx-padding: -5 -2 -2 -2;" text="0">
+                  <font>
+                    <Font name="System Bold" size="50.0" fx:id="x8" />
+                  </font>
+                </Label>
+                <HBox id="HBox" fx:id="registeredControlsPane" alignment="CENTER" spacing="5.0" visible="false">
+                  <children>
+                    <TextField fx:id="playerAddField" alignment="CENTER" prefColumnCount="2" prefHeight="29.0" promptText="1" style="-fx-font-size: 18px;&#10;-fx-font-family: Arial;&#10; -fx-text-align: center;&#10;">
+                      <maxHeight>
+                        <Long fx:value="29" />
+                      </maxHeight>
+                      <maxWidth>
+                        <Long fx:value="60" />
+                      </maxWidth>
+                      <minHeight>
+                        <Long fx:value="29" />
+                      </minHeight>
+                      <minWidth>
+                        <Long fx:value="34" />
+                      </minWidth>
+                      <prefWidth>
+                        <Long fx:value="34" />
+                      </prefWidth>
+                    </TextField>
+                    <Button id="green" fx:id="addPlayerButton" cache="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addPlayerCommand" style="-fx-font-weight: bold;&#10;-fx-font-size: 26px;&#10;-fx-padding: -2px -2px -2px -2px;" text="+" textAlignment="CENTER">
+                      <graphicTextGap>
+                        <Long fx:value="7" />
+                      </graphicTextGap>
+                      <minHeight>
+                        <Long fx:value="29" />
+                      </minHeight>
+                      <minWidth>
+                        <Long fx:value="34" />
+                      </minWidth>
+                      <prefHeight>
+                        <Long fx:value="29" />
+                      </prefHeight>
+                      <prefWidth>
+                        <Long fx:value="34" />
+                      </prefWidth>
+                      <rotationAxis>
+                        <Point3D z="100.0" />
+                      </rotationAxis>
+                      <scaleX>
+                        <Long fx:value="1" />
+                      </scaleX>
+                      <translateX>
+                        <Long fx:value="0" />
+                      </translateX>
+                      <translateY>
+                        <Long fx:value="0" />
+                      </translateY>
+                      <translateZ>
+                        <Long fx:value="0" />
+                      </translateZ>
+                    </Button>
+                  </children>
+                </HBox>
+              </children>
+              <spacing>
+                <Long fx:value="5" />
+              </spacing>
+            </VBox>
+            <VBox id="VBox" fx:id="reentriesPane" alignment="TOP_CENTER" onMouseEntered="#controlPaneFadeOn" onMouseExited="#controlPaneFadeOff" spacing="5.0">
+              <children>
+                <Label id="fontLabel" fx:id="reentriesLabel" alignment="CENTER" contentDisplay="CENTER" font="$x7" prefHeight="25.0" prefWidth="104.0" style="-fx-font-size: 18px;&#10;-fx-font-weight: bold;&#10;-fx-text-fill:white;" text="%reentriesLabel.text" textFill="$null">
+                  <maxWidth>
+                    <Long fx:value="110" />
+                  </maxWidth>
+                </Label>
+                <Label id="fontLabel" fx:id="numReentradasLabel" alignment="CENTER" contentDisplay="CENTER" font="$x8" minHeight="50.0" prefHeight="50.0" prefWidth="100.0" style="-fx-font-size: 50px;&#10;-fx-font-weight: bold;&#10;-fx-text-fill: white;&#10;-fx-padding: -5 -2 -2 -2;" text="0" textAlignment="CENTER" />
+                <Button id="green" fx:id="addReentryButton" cache="true" contentDisplay="CENTER" disable="true" minWidth="24.0" mnemonicParsing="false" onAction="#addReentradaCommand" style="-fx-font-weight: bold;&#10;-fx-font-size: 26px;&#10;-fx-padding: -2px -2px -2px -2px;" text="+" textAlignment="CENTER" visible="false">
+                  <graphicTextGap>
+                    <Long fx:value="7" />
+                  </graphicTextGap>
+                  <maxHeight>
+                    <Long fx:value="29" />
+                  </maxHeight>
+                  <minHeight>
+                    <Long fx:value="29" />
+                  </minHeight>
+                  <prefHeight>
+                    <Long fx:value="29" />
+                  </prefHeight>
+                  <prefWidth>
+                    <Long fx:value="34" />
+                  </prefWidth>
+                  <rotationAxis>
+                    <Point3D z="100.0" />
+                  </rotationAxis>
+                  <scaleX>
+                    <Long fx:value="1" />
+                  </scaleX>
+                  <translateX>
+                    <Long fx:value="0" />
+                  </translateX>
+                  <translateY>
+                    <Long fx:value="0" />
+                  </translateY>
+                  <translateZ>
+                    <Long fx:value="0" />
+                  </translateZ>
+                </Button>
+              </children>
+              <maxWidth>
+                <Long fx:value="100" />
+              </maxWidth>
+            </VBox>
+            <VBox id="VBox" fx:id="rebuysPane" alignment="TOP_CENTER" onMouseEntered="#controlPaneFadeOn" onMouseExited="#controlPaneFadeOff">
+              <children>
+                <Label id="fontLabel" fx:id="rebuysLabel" alignment="CENTER" contentDisplay="CENTER" font="$x7" maxWidth="104.0" prefHeight="25.0" prefWidth="104.0" style="-fx-font-size: 18px;&#10;-fx-font-weight: bold;&#10;-fx-text-fill:white;" text="%rebuysLabel.text" textFill="$null" />
+                <Label id="fontLabel" fx:id="numRebuysLabel" alignment="CENTER" contentDisplay="CENTER" font="$x8" prefWidth="100.0" style="-fx-font-size: 50px;&#10;-fx-font-weight: bold;&#10;-fx-text-fill: white;&#10;-fx-padding: -5 -2 -2 -2;" text="0">
+                  <maxHeight>
+                    <Long fx:value="50" />
+                  </maxHeight>
+                  <minHeight>
+                    <Long fx:value="50" />
+                  </minHeight>
+                  <prefHeight>
+                    <Long fx:value="50" />
+                  </prefHeight>
+                </Label>
+                <HBox id="HBox" fx:id="rebuysControlsPane" alignment="CENTER" disable="true" spacing="5.0" visible="false">
+                  <children>
+                    <TextField id="playerAddField" fx:id="addRebuyField" alignment="CENTER" maxHeight="33.0" prefColumnCount="2" prefWidth="34.0" style="-fx-font-size: 18px;&#10;-fx-font-family: CPTMono;&#10;-fx-text-align: center;&#10;">
+                      <maxWidth>
+                        <Long fx:value="60" />
+                      </maxWidth>
+                      <prefHeight>
+                        <Long fx:value="29" />
+                      </prefHeight>
+                    </TextField>
+                    <Button id="green" fx:id="addRebuyButton" cache="true" contentDisplay="CENTER" minHeight="29.0" minWidth="24.0" mnemonicParsing="false" onAction="#addRebuyCommand" prefHeight="29.0" prefWidth="34.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 26px;&#10;-fx-padding: -2px -2px -2px -2px;" text="+" textAlignment="CENTER">
+                      <graphicTextGap>
+                        <Long fx:value="7" />
+                      </graphicTextGap>
+                      <rotationAxis>
+                        <Point3D z="100.0" />
+                      </rotationAxis>
+                      <scaleX>
+                        <Long fx:value="1" />
+                      </scaleX>
+                      <translateX>
+                        <Long fx:value="0" />
+                      </translateX>
+                      <translateY>
+                        <Long fx:value="0" />
+                      </translateY>
+                      <translateZ>
+                        <Long fx:value="0" />
+                      </translateZ>
+                    </Button>
+                  </children>
+                </HBox>
+              </children>
+              <maxWidth>
+                <Long fx:value="100" />
+              </maxWidth>
+              <spacing>
+                <Long fx:value="5" />
+              </spacing>
+            </VBox>
+            <VBox id="VBox" fx:id="addonsPane" alignment="TOP_CENTER" onMouseEntered="#controlPaneFadeOn" onMouseExited="#controlPaneFadeOff" prefHeight="132.99989318847656" spacing="5.0">
+              <children>
+                <Label id="fontLabel" fx:id="addonsLabel" alignment="CENTER" contentDisplay="CENTER" font="$x7" prefHeight="25.0" style="-fx-font-size: 18px;&#10;-fx-font-weight: bold;&#10;-fx-text-fill:white;" text="%addonsLabel.text" textFill="$null">
+                  <prefWidth>
+                    <Long fx:value="100" />
+                  </prefWidth>
+                </Label>
+                <Label id="fontLabel" fx:id="numAddOnLabel" alignment="CENTER" contentDisplay="CENTER" font="$x8" minHeight="50.0" prefHeight="50.0" prefWidth="100.0" style="-fx-font-size: 50px;&#10;-fx-font-weight: bold;&#10;-fx-text-fill: white;&#10;-fx-padding: -5 -2 -2 -2;" text="0" />
+                <HBox id="HBox" fx:id="addonsControlsPane" alignment="CENTER" disable="true" spacing="5.0" visible="false">
+                  <children>
+                    <TextField id="playerAddField" fx:id="addAddonField" alignment="CENTER" maxHeight="33.0" prefColumnCount="2" prefWidth="34.0" style="-fx-font-size: 18px;&#10;-fx-font-family: CPTMono;&#10;-fx-text-align: center;&#10;">
+                      <maxWidth>
+                        <Long fx:value="60" />
+                      </maxWidth>
+                      <minHeight>
+                        <Long fx:value="29" />
+                      </minHeight>
+                      <minWidth>
+                        <Long fx:value="34" />
+                      </minWidth>
+                      <prefHeight>
+                        <Long fx:value="29" />
+                      </prefHeight>
+                    </TextField>
+                    <Button id="green" fx:id="addAddOnButton" cache="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addAddOnCommand" style="-fx-font-weight: bold;&#10;-fx-font-size: 26px;&#10;-fx-padding: -2px -2px -2px -2px;" text="+" textAlignment="CENTER">
+                      <graphicTextGap>
+                        <Long fx:value="7" />
+                      </graphicTextGap>
+                      <minHeight>
+                        <Long fx:value="29" />
+                      </minHeight>
+                      <minWidth>
+                        <Long fx:value="34" />
+                      </minWidth>
+                      <prefHeight>
+                        <Long fx:value="29" />
+                      </prefHeight>
+                      <prefWidth>
+                        <Long fx:value="34" />
+                      </prefWidth>
+                      <rotationAxis>
+                        <Point3D z="100.0" />
+                      </rotationAxis>
+                      <scaleX>
+                        <Long fx:value="1" />
+                      </scaleX>
+                      <translateX>
+                        <Long fx:value="0" />
+                      </translateX>
+                      <translateY>
+                        <Long fx:value="0" />
+                      </translateY>
+                      <translateZ>
+                        <Long fx:value="0" />
+                      </translateZ>
+                    </Button>
+                  </children>
+                </HBox>
+              </children>
+              <maxWidth>
+                <Long fx:value="100" />
+              </maxWidth>
+            </VBox>
+            <AnchorPane id="AnchorPane">
+              <children>
+                <Button fx:id="playButton" contentDisplay="GRAPHIC_ONLY" layoutX="13.0" layoutY="30.0" mnemonicParsing="false" onAction="#playPauseCommand">
+                  <maxHeight>
+                    <Long fx:value="73" />
+                  </maxHeight>
+                  <maxWidth>
+                    <Long fx:value="73" />
+                  </maxWidth>
+                  <minHeight>
+                    <Long fx:value="25" />
+                  </minHeight>
+                  <minWidth>
+                    <Long fx:value="25" />
+                  </minWidth>
+                  <prefHeight>
+                    <Long fx:value="73" />
+                  </prefHeight>
+                  <prefWidth>
+                    <Long fx:value="73" />
+                  </prefWidth>
+                </Button>
+                <Button id="playButton" fx:id="pauseButton" cache="true" contentDisplay="GRAPHIC_ONLY" minWidth="24.0" mnemonicParsing="false" onAction="#playPauseCommand" style="&#10;&#10;" textAlignment="CENTER" visible="false">
+                  <graphic>
+                    <ImageView mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <fitHeight>
+                        <Long fx:value="20" />
+                      </fitHeight>
+                      <fitWidth>
+                        <Long fx:value="20" />
+                      </fitWidth>
+                      <image>
+                        <Image url="@icons/pause.png" preserveRatio="false" smooth="false" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                  <graphicTextGap>
+                    <Long fx:value="0" />
+                  </graphicTextGap>
+                  <layoutX>
+                    <Long fx:value="13" />
+                  </layoutX>
+                  <layoutY>
+                    <Long fx:value="30" />
+                  </layoutY>
+                  <maxHeight>
+                    <Long fx:value="73" />
+                  </maxHeight>
+                  <minHeight>
+                    <Long fx:value="73" />
+                  </minHeight>
+                  <prefHeight>
+                    <Long fx:value="73" />
+                  </prefHeight>
+                  <prefWidth>
+                    <Long fx:value="73" />
+                  </prefWidth>
+                  <rotationAxis>
+                    <Point3D />
+                  </rotationAxis>
+                  <scaleX>
+                    <Long fx:value="1" />
+                  </scaleX>
+                  <scaleY>
+                    <Long fx:value="1" />
+                  </scaleY>
+                  <translateX>
+                    <Long fx:value="0" />
+                  </translateX>
+                  <translateY>
+                    <Long fx:value="0" />
+                  </translateY>
+                  <translateZ>
+                    <Long fx:value="0" />
+                  </translateZ>
+                </Button>
+              </children>
+              <prefWidth>
+                <Long fx:value="100" />
+              </prefWidth>
+            </AnchorPane>
+            <VBox id="VBox" fx:id="playersPane" alignment="TOP_CENTER" onMouseEntered="#controlPaneFadeOn" onMouseExited="#controlPaneFadeOff" spacing="5.0">
+              <children>
+                <Label id="fontLabel" fx:id="playersLabel" alignment="CENTER" contentDisplay="CENTER" font="$x7" maxWidth="100.0" prefHeight="25.0" prefWidth="100.0" style="-fx-font-size: 18px;&#10;-fx-font-weight: bold;&#10;-fx-text-fill:white;" text="%livePlayers.text" textFill="$null" />
+                <Label id="fontLabel" fx:id="livePlayersLabel" alignment="CENTER" contentDisplay="CENTER" font="$x8" prefWidth="100.0" style="-fx-font-size: 50px;&#10;-fx-font-weight: bold;&#10;-fx-text-fill: white;&#10;-fx-padding: -5 -2 -2 -2;" text="0">
+                  <minHeight>
+                    <Long fx:value="50" />
+                  </minHeight>
+                  <prefHeight>
+                    <Long fx:value="50" />
+                  </prefHeight>
+                </Label>
+                <Button id="green" fx:id="eliminatePlayerButton" cache="true" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#eliminatePlayerCommand" style="-fx-font-weight: bold;&#10;-fx-padding: -2px -2px -1px -2px;&#10;-fx-font-size: 24px;" text="x" textAlignment="CENTER" visible="false">
+                  <graphicTextGap>
+                    <Long fx:value="0" />
+                  </graphicTextGap>
+                  <minWidth>
+                    <Long fx:value="34" />
+                  </minWidth>
+                  <prefHeight>
+                    <Long fx:value="29" />
+                  </prefHeight>
+                  <prefWidth>
+                    <Long fx:value="34" />
+                  </prefWidth>
+                  <rotationAxis>
+                    <Point3D z="100.0" />
+                  </rotationAxis>
+                  <scaleX>
+                    <Long fx:value="1" />
+                  </scaleX>
+                  <translateX>
+                    <Long fx:value="0" />
+                  </translateX>
+                  <translateY>
+                    <Long fx:value="0" />
+                  </translateY>
+                  <translateZ>
+                    <Long fx:value="0" />
+                  </translateZ>
+                </Button>
+              </children>
+            </VBox>
+            <VBox id="VBox" fx:id="levelPane" alignment="TOP_CENTER" onMouseEntered="#controlPaneFadeOn" onMouseExited="#controlPaneFadeOff" spacing="5.0">
+              <children>
+                <Label id="fontLabel" fx:id="levelLabel" alignment="CENTER" contentDisplay="CENTER" font="$x7" prefHeight="24.999900000002526" prefWidth="64.00009999999747" style="-fx-font-size: 18px;&#10;-fx-font-weight: bold;&#10;-fx-text-fill:white;" text="%levelLabel.text" textFill="$null">
+                  <graphicTextGap>
+                    <Long fx:value="4" />
+                  </graphicTextGap>
+                </Label>
+                <Label id="fontLabel" fx:id="numLevelLabel" alignment="CENTER" contentDisplay="CENTER" font="$x8" minHeight="50.0" prefHeight="50.0" prefWidth="90.0" style="-fx-font-size: 50px;&#10;-fx-font-weight: bold;&#10;-fx-text-fill: white;&#10;-fx-padding: -5 -2 -2 -2;" text="0">
+                  <graphicTextGap>
+                    <Long fx:value="0" />
+                  </graphicTextGap>
+                </Label>
+                <Button id="green" fx:id="upLevelButton" cache="true" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#upLevelCommand" style="-fx-font-weight: bold;&#10;-fx-font-size: 26px;&#10;-fx-padding: -2px -2px -1px -2px;" textAlignment="CENTER" visible="false">
+                  <graphicTextGap>
+                    <Long fx:value="0" />
+                  </graphicTextGap>
+                  <minHeight>
+                    <Long fx:value="29" />
+                  </minHeight>
+                  <minWidth>
+                    <Long fx:value="34" />
+                  </minWidth>
+                  <prefHeight>
+                    <Long fx:value="29" />
+                  </prefHeight>
+                  <prefWidth>
+                    <Long fx:value="34" />
+                  </prefWidth>
+                  <rotationAxis>
+                    <Point3D z="100.0" />
+                  </rotationAxis>
+                  <scaleX>
+                    <Long fx:value="1" />
+                  </scaleX>
+                  <translateX>
+                    <Long fx:value="0" />
+                  </translateX>
+                  <translateY>
+                    <Long fx:value="0" />
+                  </translateY>
+                  <translateZ>
+                    <Long fx:value="0" />
+                  </translateZ>
+                </Button>
+              </children>
+            </VBox>
+            <VBox id="VBox" alignment="CENTER" prefHeight="133.0" prefWidth="215.0" spacing="5.0">
+              <children>
+                <Label id="numRebuys" fx:id="timeLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="64.19999694824219" prefHeight="64.19999694824219" prefWidth="166.0" style="-fx-font-family: CPTMono;&#10;-fx-font-size: 54px;&#10;-fx-text-fill: white;" text="00:00">
+                  <font>
+                    <Font name="System Bold" size="36.0" />
+                  </font>
+                  <VBox.margin>
+                    <Insets top="28.0" />
+                  </VBox.margin>
+                </Label>
+                <Label id="fontLabel" fx:id="breakLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="166.0" style=" -fx-font-size: 22px;&#10;-fx-font-weight: bold;&#10;-fx-text-fill:white;" text="%breakTime.text" visible="false" />
+              </children>
+            </VBox>
+          </children>
+          <StackPane.margin>
+            <Insets bottom="30.0" left="30.0" right="30.0" />
+          </StackPane.margin>
+        </HBox>
+        <ListView id="undoList" fx:id="actionsListView" editable="true" prefHeight="30.0" StackPane.alignment="BOTTOM_CENTER">
+          <maxHeight>
+            <Long fx:value="30" />
+          </maxHeight>
+          <maxWidth>
+            <Long fx:value="1000" />
+          </maxWidth>
+          <prefWidth>
+            <Long fx:value="900" />
+          </prefWidth>
+          <StackPane.margin>
+            <Insets left="30.0" right="60.0" />
+          </StackPane.margin>
+        </ListView>
+        <Button id="green" fx:id="undoButton" cache="true" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#undoCommand" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" style="-fx-padding: -2px -2px -1px -2px;&#10;" textAlignment="CENTER" StackPane.alignment="BOTTOM_RIGHT">
+          <graphicTextGap>
+            <Long fx:value="0" />
+          </graphicTextGap>
+          <maxHeight>
+            <Long fx:value="30" />
+          </maxHeight>
+          <minWidth>
+            <Long fx:value="30" />
+          </minWidth>
+          <prefHeight>
+            <Long fx:value="30" />
+          </prefHeight>
+          <prefWidth>
+            <Long fx:value="30" />
+          </prefWidth>
+          <rotationAxis>
+            <Point3D z="100.0" />
+          </rotationAxis>
+          <scaleX>
+            <Long fx:value="1" />
+          </scaleX>
+          <translateX>
+            <Long fx:value="0" />
+          </translateX>
+          <translateY>
+            <Long fx:value="0" />
+          </translateY>
+          <translateZ>
+            <Long fx:value="0" />
+          </translateZ>
+          <StackPane.margin>
+            <Insets right="30.0" />
+          </StackPane.margin>
+        </Button>
+      </children>
+      <maxWidth>
+        <Long fx:value="1000" />
+      </maxWidth>
+      <prefWidth>
+        <Long fx:value="1000" />
+      </prefWidth>
+    </StackPane>
+    <TabPane id="menuTabs" fx:id="tabPane" layoutX="1.0" layoutY="163.0" maxHeight="517.0" minWidth="1000.0" prefHeight="517.0" side="BOTTOM" style="-fx-tab-min-width: 180px;&#10;-fx-tab-max-width: 180px;" tabClosingPolicy="UNAVAILABLE">
+      <maxWidth>
+        <Long fx:value="1000" />
+      </maxWidth>
+      <minHeight>
+        <Long fx:value="400" />
+      </minHeight>
+      <prefWidth>
+        <Long fx:value="1000" />
+      </prefWidth>
+      <tabMaxHeight>
+        <Long fx:value="40" />
+      </tabMaxHeight>
+      <tabMaxWidth>
+        <Long fx:value="850" />
+      </tabMaxWidth>
+      <tabMinHeight>
+        <Long fx:value="40" />
+      </tabMinHeight>
+      <tabs>
+        <Tab id="" fx:id="formatTab" closable="false" style="" text="%formatTab.text" />
+        <Tab fx:id="blindsTab" closable="false" text="%blindsTab.text" />
+        <Tab fx:id="prizesTab" closable="false" text="%prizesTab.text" />
+        <Tab fx:id="announcementsTab" closable="false" text="%announcementsTab.text" />
+        <Tab fx:id="overviewTab" closable="false" text="%stateTab.text">
+          <content>
+            <StackPane id="borderPane" minHeight="0.0" minWidth="0.0" prefHeight="517.0">
+              <children>
+                <Pane prefHeight="412.0" StackPane.alignment="CENTER_LEFT">
+                  <children>
+                    <Label id="fontLabel" fx:id="nameLabel" alignment="CENTER_RIGHT" layoutY="55.0" prefHeight="40.0" prefWidth="93.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14 px;&#10;-fx-padding: 0 10 0 0;" text="%name.text" textAlignment="RIGHT" textFill="WHITE" />
+                    <StackPane fx:id="totalsPane" layoutY="55.0" visible="false">
+                      <children>
+                        <Label id="fontLabel" fx:id="totalsLabel" prefHeight="40.0" style="-fx-font-size: 18px;&#10;-fx-font-weight: bold;&#10;-fx-font-family: &quot;Exo&quot;;" text="%totalsLabel.text" textFill="WHITE" StackPane.alignment="TOP_LEFT">
+                          <font>
+                            <Font name="System Bold" size="17.0" fx:id="x2" />
+                          </font>
+                          <prefWidth>
+                            <Long fx:value="250" />
+                          </prefWidth>
+                        </Label>
+                        <VBox prefHeight="320.0" prefWidth="141.0" StackPane.alignment="TOP_LEFT">
+                          <children>
+                            <Label id="fontLabel" fx:id="entryPoolLabel" font="$x2" prefHeight="40.0" prefWidth="149.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14 px;" text="%entryPoolLabel.text" textFill="WHITE" />
+                            <Label id="fontLabel" fx:id="prizePoolLabel" contentDisplay="RIGHT" font="$x2" prefHeight="40.0" prefWidth="149.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14 px;" text="%prizePoolLabel.text" textFill="WHITE" />
+                            <Label id="fontLabel" fx:id="bountiesNameLabel" font="$x2" prefHeight="40.0" prefWidth="149.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14 px;" text="%bountiesLabel.text" textFill="WHITE" />
+                            <Label id="fontLabel" fx:id="payoutLabel" font="$x2" prefHeight="40.0" prefWidth="149.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14 px;" text="%payoutLabel.text" textFill="WHITE" />
+                            <Label id="fontLabel" font="$x2" prefHeight="40.0" prefWidth="149.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14 px;" text="%entryFee.text" textFill="WHITE" />
+                            <Label id="fontLabel" contentDisplay="RIGHT" font="$x2" prefHeight="40.0" prefWidth="149.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14 px;" text="%externalFee.text" textFill="WHITE" />
+                            <Label id="fontLabel" font="$x2" prefHeight="40.0" prefWidth="149.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14 px;" text="%leaguePool.text" textFill="WHITE" />
+                          </children>
+                          <maxWidth>
+                            <Long fx:value="155" />
+                          </maxWidth>
+                          <padding>
+                            <Insets left="20.0" />
+                          </padding>
+                          <spacing>
+                            <Long fx:value="0" />
+                          </spacing>
+                          <StackPane.margin>
+                            <Insets top="40.0" fx:id="x6" />
+                          </StackPane.margin>
+                        </VBox>
+                        <VBox StackPane.alignment="TOP_RIGHT" StackPane.margin="$x6">
+                          <children>
+                            <Label id="fontLabel" fx:id="receiptsLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" font="$x2" prefHeight="40.0" prefWidth="262.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;&#10;-fx-background-color:derive(-fx-base,+10%);&#10;-fx-border-width: 0;&#10;-fx-border-color: white;&#10;-fx-padding: 0 24 0 0;" text="0" textFill="WHITE" />
+                            <Label id="fontLabel" fx:id="prizesLabel" alignment="CENTER_RIGHT" font="$x2" prefHeight="40.0" prefWidth="262.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;&#10;-fx-background-color:derive(-fx-base,+10%);&#10;-fx-border-width: 0;&#10;-fx-border-color: white;&#10;-fx-padding: 0 24 0 0;" text="0" textFill="WHITE" />
+                            <Label id="fontLabel" fx:id="bountiesLabel" alignment="CENTER_RIGHT" font="$x2" prefHeight="40.0" prefWidth="262.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;&#10;-fx-background-color:derive(-fx-base,+10%);&#10;-fx-border-width: 0;&#10;-fx-border-color: white;&#10;-fx-padding: 0 24 0 0;" text="0" textFill="WHITE" />
+                            <Label id="fontLabel" fx:id="handOutLabel" alignment="CENTER_RIGHT" font="$x2" prefHeight="40.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;&#10;-fx-background-color:derive(-fx-base,+10%);&#10;-fx-border-width: 0;&#10;-fx-border-color: white;&#10;-fx-padding: 0 24 0 0;" text="0" textFill="WHITE">
+                              <prefWidth>
+                                <Long fx:value="200" />
+                              </prefWidth>
+                            </Label>
+                            <Label id="fontLabel" fx:id="feeLabel" alignment="CENTER_RIGHT" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;&#10;-fx-padding: 0 24 0 0;&#10;-fx-background-color:derive(-fx-base,+10%);&#10;-fx-border-width: 0;&#10;-fx-border-color: white;" text="0" textFill="WHITE">
+                              <maxHeight>
+                                <Long fx:value="40" />
+                              </maxHeight>
+                              <maxWidth>
+                                <Long fx:value="200" />
+                              </maxWidth>
+                              <prefHeight>
+                                <Long fx:value="40" />
+                              </prefHeight>
+                              <prefWidth>
+                                <Long fx:value="200" />
+                              </prefWidth>
+                            </Label>
+                            <Label id="fontLabel" fx:id="orgExtFeeLabel" alignment="CENTER_RIGHT" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;&#10;-fx-padding: 0 24 0 0;&#10;-fx-background-color:derive(-fx-base,+10%);&#10;-fx-border-width: 0;&#10;-fx-border-color: white;" text="0" textFill="WHITE">
+                              <maxHeight>
+                                <Long fx:value="40" />
+                              </maxHeight>
+                              <maxWidth>
+                                <Long fx:value="200" />
+                              </maxWidth>
+                              <prefHeight>
+                                <Long fx:value="40" />
+                              </prefHeight>
+                              <prefWidth>
+                                <Long fx:value="200" />
+                              </prefWidth>
+                            </Label>
+                            <Label id="fontLabel" fx:id="leagueJackPotLabel" alignment="CENTER_RIGHT" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;&#10;-fx-padding: 0 24 0 0;&#10;-fx-background-color:derive(-fx-base,+10%);&#10;-fx-border-width: 0;&#10;-fx-border-color: white;" text="0" textFill="WHITE">
+                              <maxHeight>
+                                <Long fx:value="40" />
+                              </maxHeight>
+                              <maxWidth>
+                                <Long fx:value="200" />
+                              </maxWidth>
+                              <prefHeight>
+                                <Long fx:value="40" />
+                              </prefHeight>
+                              <prefWidth>
+                                <Long fx:value="200" />
+                              </prefWidth>
+                            </Label>
+                          </children>
+                          <maxWidth>
+                            <Long fx:value="155" />
+                          </maxWidth>
+                          <prefHeight>
+                            <Long fx:value="320" />
+                          </prefHeight>
+                          <prefWidth>
+                            <Long fx:value="200" />
+                          </prefWidth>
+                          <spacing>
+                            <Long fx:value="0" />
+                          </spacing>
+                        </VBox>
+                        <VBox id="VBox" alignment="TOP_CENTER" StackPane.alignment="TOP_RIGHT" StackPane.margin="$x6">
+                          <children>
+                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="?" />
+                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="?" />
+                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="?" />
+                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="?" />
+                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="?" />
+                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="?" />
+                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="?" />
+                          </children>
+                          <maxWidth>
+                            <Long fx:value="20" />
+                          </maxWidth>
+                          <prefHeight>
+                            <Long fx:value="200" />
+                          </prefHeight>
+                          <prefWidth>
+                            <Long fx:value="15" />
+                          </prefWidth>
+                          <spacing>
+                            <Long fx:value="0" />
+                          </spacing>
+                        </VBox>
+                      </children>
+                      <layoutX>
+                        <Long fx:value="385" />
+                      </layoutX>
+                      <prefWidth>
+                        <Long fx:value="310" />
+                      </prefWidth>
+                    </StackPane>
+                    <VBox layoutX="93.0" layoutY="55.0" prefHeight="95.0" prefWidth="262.0">
+                      <children>
+                        <TextField id="fontLabel" fx:id="nameField" prefHeight="40.0" prefWidth="262.0" style="-fx-font-size: 18px;&#10;-fx-background-radius: 0;&#10;-fx-font-weight: bold;">
+                          <maxHeight>
+                            <Long fx:value="40" />
+                          </maxHeight>
+                          <minHeight>
+                            <Long fx:value="26" />
+                          </minHeight>
+                        </TextField>
+                        <TextField id="fontLabel" fx:id="subNameField" style="-fx-font-size: 18px;&#10;-fx-background-radius: 0;&#10;-fx-font-weight: bold;">
+                          <prefHeight>
+                            <Long fx:value="40" />
+                          </prefHeight>
+                          <prefWidth>
+                            <Long fx:value="262" />
+                          </prefWidth>
+                          <VBox.margin>
+                            <Insets top="-2.0" />
+                          </VBox.margin>
+                        </TextField>
+                      </children>
+                      <spacing>
+                        <Long fx:value="0" />
+                      </spacing>
+                    </VBox>
+                    <Label id="fontLabel" font="$x2" prefHeight="40.0" style="-fx-font-size: 32 px;&#10;-fx-font-family: &quot;Exo&quot;;" text="%stateTab.text" textFill="WHITE">
+                      <prefWidth>
+                        <Long fx:value="100" />
+                      </prefWidth>
+                    </Label>
+                    <Button id="finalizeTournamentButton" fx:id="initTournamentButton" layoutX="93.0" layoutY="255.0" mnemonicParsing="false" onAction="#startTournament" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefHeight="121.0" prefWidth="262.0" text="%start.text" />
+                    <Button fx:id="finalizeTournamentButton" layoutX="93.0" layoutY="255.0" mnemonicParsing="false" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefWidth="262.0" text="Finalizar" visible="false">
+                      <prefHeight>
+                        <Long fx:value="120" />
+                      </prefHeight>
+                    </Button>
+                  </children>
+                  <maxWidth>
+                    <Long fx:value="710" />
+                  </maxWidth>
+                  <prefWidth>
+                    <Long fx:value="710" />
+                  </prefWidth>
+                  <StackPane.margin>
+                    <Insets bottom="30.0" left="30.0" right="200.0" top="30.0" />
+                  </StackPane.margin>
+                </Pane>
+                <VBox alignment="TOP_RIGHT" prefWidth="100.0" style="-fx-border-width: 0 0 0 2;&#10;-fx-border-color: white;" StackPane.alignment="CENTER_RIGHT">
+                  <children>
+                    <Label alignment="CENTER_RIGHT" prefWidth="186.0" text="%saveAsTemplate.text">
+                      <prefHeight>
+                        <Long fx:value="40" />
+                      </prefHeight>
+                    </Label>
+                    <ComboBox id="saveTemplateCombo" fx:id="saveTemplateBox" editable="true" prefWidth="198.0" visibleRowCount="4">
+                      <items>
+                        <FXCollections fx:factory="observableArrayList">
+                          <String fx:value="Item 1" />
+                          <String fx:value="Item 2" />
+                          <String fx:value="Item 3" />
+                        </FXCollections>
+                      </items>
+                      <prefHeight>
+                        <Long fx:value="40" />
+                      </prefHeight>
+                    </ComboBox>
+                    <Button id="green" fx:id="saveConfigButton" mnemonicParsing="false" onAction="#saveTournamentConfiguration" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" text="%saveButton.text">
+                      <prefHeight>
+                        <Long fx:value="40" />
+                      </prefHeight>
+                      <prefWidth>
+                        <Long fx:value="96" />
+                      </prefWidth>
+                    </Button>
+                    <Label alignment="CENTER_RIGHT" prefWidth="186.0" text="%showOn.text">
+                      <prefHeight>
+                        <Long fx:value="40" />
+                      </prefHeight>
+                    </Label>
+                    <TableView fx:id="visorTableView" prefWidth="200.0">
+                      <columns>
+                        <TableColumn text="Visor" fx:id="visorID">
+                          <maxWidth>
+                            <Long fx:value="60" />
+                          </maxWidth>
+                          <prefWidth>
+                            <Long fx:value="100" />
+                          </prefWidth>
+                        </TableColumn>
+                        <TableColumn text="%owner.text" fx:id="visorOwner">
+                          <maxWidth>
+                            <Long fx:value="130" />
+                          </maxWidth>
+                          <minWidth>
+                            <Long fx:value="130" />
+                          </minWidth>
+                          <prefWidth>
+                            <Long fx:value="130" />
+                          </prefWidth>
+                        </TableColumn>
+                      </columns>
+                      <prefHeight>
+                        <Long fx:value="203" />
+                      </prefHeight>
+                    </TableView>
+                  </children>
+                  <maxWidth>
+                    <Long fx:value="230" />
+                  </maxWidth>
+                  <padding>
+                    <Insets left="30.0" fx:id="x11" />
+                  </padding>
+                  <prefHeight>
+                    <Long fx:value="230" />
+                  </prefHeight>
+                  <spacing>
+                    <Long fx:value="10" />
+                  </spacing>
+                  <StackPane.margin>
+                    <Insets bottom="30.0" right="30.0" top="30.0" />
+                  </StackPane.margin>
+                </VBox>
+              </children>
+              <prefWidth>
+                <Long fx:value="1000" />
+              </prefWidth>
+            </StackPane>
+          </content>
+        </Tab>
+      </tabs>
+    </TabPane>
+    <HBox fx:id="createHelpPane" alignment="CENTER_LEFT" prefHeight="163.0">
+      <children>
+        <Pane fx:id="step1" onMouseClicked="#stepSelected" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefWidth="200.0" style="-fx-background-color: #008D17;">
+          <children>
+            <Label prefHeight="42.0" prefWidth="200.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 20 px;&#10;-fx-padding: 0 0 0 20;&#10;-fx-border-width: 0 0 2 0;&#10;-fx-border-color: white;" text="Paso 1" />
+            <Label layoutY="42.0" prefHeight="121.0" prefWidth="200.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14 px;&#10;-fx-padding: 0 5 0 20;" text="Define el formato del torneo. Minimo Buy-In y Fee" textAlignment="JUSTIFY" wrapText="true" />
+            <ImageView id="step2Image" fx:id="step1Image" layoutX="154.0" layoutY="117.0" opacity="0.3" pickOnBounds="true" preserveRatio="true">
+              <fitHeight>
+                <Long fx:value="32" />
+              </fitHeight>
+              <fitWidth>
+                <Long fx:value="32" />
+              </fitWidth>
+              <image>
+                <Image url="@icons/check.png" preserveRatio="false" smooth="false" />
+              </image>
+            </ImageView>
+          </children>
+          <prefHeight>
+            <Long fx:value="163" />
+          </prefHeight>
+        </Pane>
+        <Pane fx:id="step2" onMouseClicked="#stepSelected" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefWidth="200.0" style="-fx-background-color: #2D86EE;">
+          <children>
+            <Label prefHeight="42.0" prefWidth="200.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 20 px;&#10;-fx-padding: 0 0 0 20;&#10;-fx-border-width: 0 0 2 0;&#10;-fx-border-color: white;" text="Paso 2" />
+            <Label contentDisplay="CENTER" layoutY="42.0" prefHeight="121.0" prefWidth="200.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14 px;&#10;-fx-padding: 0 5 0 20;" text="Elige o crea una  estructura de ciegas" textAlignment="JUSTIFY" wrapText="true" />
+            <ImageView fx:id="step2Image" layoutX="154.0" layoutY="117.0" opacity="0.3" pickOnBounds="true" preserveRatio="true">
+              <fitHeight>
+                <Long fx:value="32" />
+              </fitHeight>
+              <fitWidth>
+                <Long fx:value="32" />
+              </fitWidth>
+              <image>
+                <Image url="@icons/check.png" preserveRatio="false" smooth="false" />
+              </image>
+            </ImageView>
+          </children>
+          <prefHeight>
+            <Long fx:value="163" />
+          </prefHeight>
+        </Pane>
+        <Pane fx:id="step3" onMouseClicked="#stepSelected" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefWidth="200.0" style="-fx-background-color: #2D86EE;">
+          <children>
+            <Label prefHeight="42.0" prefWidth="200.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 20 px;&#10;-fx-padding: 0 0 0 20;&#10;-fx-border-width: 0 0 2 0;&#10;-fx-border-color: white;" text="Paso 3" />
+            <Label layoutY="42.0" prefHeight="121.0" prefWidth="200.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14 px;&#10;-fx-padding: 0 5 0 20;" text="Elige una estructura de reparto de premios" textAlignment="JUSTIFY" wrapText="true" />
+            <ImageView id="step4Image" fx:id="step3Image" layoutX="154.0" layoutY="117.0" opacity="0.3" pickOnBounds="true" preserveRatio="true">
+              <fitHeight>
+                <Long fx:value="32" />
+              </fitHeight>
+              <fitWidth>
+                <Long fx:value="32" />
+              </fitWidth>
+              <image>
+                <Image url="@icons/check.png" preserveRatio="false" smooth="false" />
+              </image>
+            </ImageView>
+          </children>
+          <prefHeight>
+            <Long fx:value="163" />
+          </prefHeight>
+        </Pane>
+        <Pane fx:id="step4" onMouseClicked="#stepSelected" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefWidth="200.0" style="-fx-background-color: #2D86EE;">
+          <children>
+            <Label id="step5" fx:id="step5Label" layoutY="42.0" prefHeight="121.0" prefWidth="200.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14 px;&#10;-fx-padding: 0 5 0 20;" text="Carga tus anuncios del torneo" textAlignment="JUSTIFY" wrapText="true" />
+            <ImageView id="step4Image" layoutX="154.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+              <fitHeight>
+                <Long fx:value="32" />
+              </fitHeight>
+              <fitWidth>
+                <Long fx:value="32" />
+              </fitWidth>
+              <image>
+                <Image url="@icons/check.png" preserveRatio="false" smooth="false" />
+              </image>
+            </ImageView>
+            <Label prefHeight="42.0" prefWidth="200.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 20 px;&#10;-fx-padding: 0 0 0 20;&#10;-fx-border-width: 0 0 2 0;&#10;-fx-border-color: white;" text="Paso 4" />
+          </children>
+          <prefHeight>
+            <Long fx:value="163" />
+          </prefHeight>
+        </Pane>
+        <Pane fx:id="step5" onMouseClicked="#stepSelected" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefWidth="200.0" style="-fx-background-color: #2D86EE;">
+          <children>
+            <Label alignment="CENTER" layoutY="42.0" prefHeight="107.0" prefWidth="200.0" style="-fx-font-weight: bold;&#10;    -fx-font-size: 14 px;&#10;-fx-padding: 0 5 0 20;" text="Dale un nombre al torneo y selecciona los visores en los que mostraras el torneo" textAlignment="JUSTIFY" wrapText="true" />
+            <ImageView id="step1Image" fx:id="step5Image" layoutX="154.0" layoutY="117.0" opacity="0.3" pickOnBounds="true" preserveRatio="true">
+              <fitHeight>
+                <Long fx:value="32" />
+              </fitHeight>
+              <fitWidth>
+                <Long fx:value="32" />
+              </fitWidth>
+              <image>
+                <Image url="@icons/check.png" preserveRatio="false" smooth="false" />
+              </image>
+            </ImageView>
+            <Label prefHeight="42.0" prefWidth="200.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 20 px;&#10;-fx-padding: 0 0 0 20;&#10;-fx-border-width: 0 0 2 0;&#10;-fx-border-color: white;" text="Paso 5" wrapText="true" />
+          </children>
+          <prefHeight>
+            <Long fx:value="163" />
+          </prefHeight>
+        </Pane>
+      </children>
+      <layoutX>
+        <Long fx:value="0" />
+      </layoutX>
+      <prefWidth>
+        <Long fx:value="1000" />
+      </prefWidth>
+    </HBox>
+  </children>
+  <prefHeight>
+    <Long fx:value="680" />
+  </prefHeight>
+  <prefWidth>
+    <Long fx:value="1000" />
+  </prefWidth>
+</AnchorPane>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Event Manager.jnlp">
+  <information>
+    <title>Event Manager</title>
+    <vendor>Octavio Roncal Andres</vendor>
+    <description>Sample JavaFX 2.0 application.</description>
+    <icon href="" />
+    <offline-allowed/>
+  </information>
+  <resources>
+    <jfx:javafx-runtime version="2.2+" href="http://javadl.sun.com/webapps/download/GetFile/javafx-latest/windows-i586/javafx2.jnlp"/>
+  </resources>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="EventManager.jar" size="951628" download="eager" />
+    <jar href="lib/commons-codec-1.6.jar" size="232771" download="eager" />
+    <jar href="lib/commons-logging-1.1.1.jar" size="60686" download="eager" />
+    <jar href="lib/fluent-hc-4.2.1.jar" size="21886" download="eager" />
+    <jar href="lib/httpclient-4.2.1.jar" size="427022" download="eager" />
+    <jar href="lib/httpclient-cache-4.2.1.jar" size="115096" download="eager" />
+    <jar href="lib/httpcore-4.2.1.jar" size="223374" download="eager" />
+    <jar href="lib/httpcore-4.2.2.jar" size="223570" download="eager" />
+    <jar href="lib/httpcore-ab-4.2.2.jar" size="30683" download="eager" />
+    <jar href="lib/httpcore-nio-4.2.2.jar" size="285592" download="eager" />
+    <jar href="lib/httpmime-4.2.1.jar" size="26598" download="eager" />
+    <jar href="lib/org-netbeans-modules-javawebstart-anttasks.jar" size="64504" download="eager" />
+  </resources>
+  <applet-desc  width="1000" height="700" main-class="com.javafx.main.NoJavaFXFallback"  name="Event Manager" >
+    <param name="requiredFXVersion" value="2.2+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="1000" height="700" main-class="eventManager.EventManager"  name="Event Manager" />
+  <update check="always"/>
+</jnlp>

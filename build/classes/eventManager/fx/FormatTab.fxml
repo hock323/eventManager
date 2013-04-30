@@ -1,0 +1,680 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-preview-i18n-resource ../bundles/Bundle_en_EN.properties?>
+<?scenebuilder-stylesheet stilo.css?>
+
+<StackPane fx:id="generalPane" minWidth="1000.0" xmlns:fx="http://javafx.com/fxml" fx:controller="eventManager.controller.pokerTournament.FormatController">
+  <children>
+    <VBox fx:id="formatVBox" alignment="CENTER" prefHeight="412.0" StackPane.alignment="CENTER_LEFT">
+      <children>
+        <HBox prefHeight="40.0" prefWidth="740.0" VBox.vgrow="NEVER">
+          <children>
+            <Label id="fontLabel" fx:id="chipsLabel" contentDisplay="CENTER" maxHeight="130.0" textFill="WHITE">
+              <minWidth>
+                <Long fx:value="120" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </Label>
+            <Label id="fontLabel" fx:id="costLabel" alignment="CENTER_RIGHT" maxHeight="130.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14 px;" text="%cost.text" textFill="WHITE">
+              <minWidth>
+                <Long fx:value="119" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="119" />
+              </prefWidth>
+            </Label>
+            <Label id="" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="130.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14 px;&#10;-fx-font-family: &quot;Exo&quot;;" text="%chipsLabel.text" textFill="WHITE">
+              <maxWidth>
+                <Long fx:value="127" />
+              </maxWidth>
+              <minWidth>
+                <Long fx:value="118" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="118" />
+              </prefWidth>
+            </Label>
+            <Label id="fontLabel" fx:id="buyinUntillvLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxHeight="130.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14 px;" text="%untilLv.text" textFill="WHITE">
+              <minWidth>
+                <Long fx:value="118" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="118" />
+              </prefWidth>
+            </Label>
+            <Label id="fontLabel" fx:id="perPlayerLabel" alignment="CENTER_RIGHT" maxHeight="130.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14 px;" text="%perPlayer.text" textFill="WHITE">
+              <minWidth>
+                <Long fx:value="118" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="118" />
+              </prefWidth>
+            </Label>
+            <Label id="fontLabel" maxHeight="130.0" style="-fx-font-size: 18px;&#10;-fx-font-weight: bold;" textFill="WHITE">
+              <minWidth>
+                <Long fx:value="120" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </Label>
+          </children>
+          <minHeight>
+            <Long fx:value="40" />
+          </minHeight>
+          <minWidth>
+            <Long fx:value="680" />
+          </minWidth>
+        </HBox>
+        <HBox prefHeight="40.0" prefWidth="740.0">
+          <children>
+            <Label id="fontLabel" alignment="CENTER" maxHeight="130.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 14 px;&#10;-fx-background-color: #008D17;" text="%buyin.text" textFill="WHITE">
+              <minWidth>
+                <Long fx:value="118" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="119" />
+              </prefWidth>
+              <HBox.margin>
+                <Insets bottom="1.0" left="1.0" right="1.0" />
+              </HBox.margin>
+            </Label>
+            <TextField id="fontLabel" fx:id="costBuyinField" alignment="CENTER_RIGHT" maxWidth="130.0" onMouseClicked="#selectInField" prefHeight="40.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;&#10;-fx-padding: 0 24 0 0;">
+              <maxHeight>
+                <Long fx:value="200" />
+              </maxHeight>
+              <minHeight>
+                <Long fx:value="40" />
+              </minHeight>
+              <minWidth>
+                <Long fx:value="120" />
+              </minWidth>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+              <HBox.margin>
+                <Insets right="1.0" fx:id="x3" />
+              </HBox.margin>
+            </TextField>
+            <Label alignment="CENTER" prefHeight="40.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="€">
+              <minWidth>
+                <Long fx:value="24" />
+              </minWidth>
+              <prefWidth>
+                <Long fx:value="24" />
+              </prefWidth>
+              <HBox.margin>
+                <Insets left="-25.0" right="-2.0" />
+              </HBox.margin>
+            </Label>
+            <TextField fx:id="chipsBuyinField" alignment="CENTER_RIGHT" maxWidth="130.0" onMouseClicked="#selectInField" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;">
+              <maxHeight>
+                <Long fx:value="200" />
+              </maxHeight>
+              <minHeight>
+                <Long fx:value="40" />
+              </minHeight>
+              <minWidth>
+                <Long fx:value="120" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+              <HBox.margin>
+                <Insets right="-2.0" fx:id="x1" />
+              </HBox.margin>
+            </TextField>
+            <TextField fx:id="lvMaxBuyinField" alignment="CENTER_RIGHT" maxWidth="130.0" onMouseClicked="#selectInField" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;" HBox.margin="$x1">
+              <maxHeight>
+                <Long fx:value="200" />
+              </maxHeight>
+              <minHeight>
+                <Long fx:value="40" />
+              </minHeight>
+              <minWidth>
+                <Long fx:value="120" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </TextField>
+            <TextField fx:id="numMaxReentradaField" alignment="CENTER_RIGHT" maxWidth="130.0" onMouseClicked="#selectInField" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;" text="0">
+              <maxHeight>
+                <Long fx:value="200" />
+              </maxHeight>
+              <minHeight>
+                <Long fx:value="40" />
+              </minHeight>
+              <minWidth>
+                <Long fx:value="120" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </TextField>
+            <Label id="fontLabel" maxWidth="90.0" prefWidth="90.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;&#10;-fx-padding: 0 0 0 13;" text="%reentriesLabel.text" textFill="WHITE">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+            </Label>
+          </children>
+          <maxWidth>
+            <Long fx:value="940" />
+          </maxWidth>
+        </HBox>
+        <HBox prefWidth="700.0">
+          <children>
+            <ToggleButton id="green" fx:id="toggleRebuy" maxWidth="130.0" mnemonicParsing="false" onAction="#toggleRebuy" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" text="%rebuyButton.text">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <minHeight>
+                <Long fx:value="26" />
+              </minHeight>
+              <minWidth>
+                <Long fx:value="120" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="26" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </ToggleButton>
+            <TextField id="fontLabel" fx:id="rebuyCostField" alignment="CENTER_RIGHT" disable="true" onMouseClicked="#selectInField" style="-fx-padding: 0 24 0 0;" HBox.margin="$x3">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <maxWidth>
+                <Long fx:value="120" />
+              </maxWidth>
+              <minHeight>
+                <Long fx:value="40" />
+              </minHeight>
+              <minWidth>
+                <Long fx:value="120" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </TextField>
+            <Label fx:id="euroRebuy" alignment="CENTER" disable="true" prefHeight="40.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="€" textAlignment="CENTER">
+              <prefWidth>
+                <Long fx:value="24" />
+              </prefWidth>
+              <HBox.margin>
+                <Insets left="-25.0" right="-2.0" />
+              </HBox.margin>
+            </Label>
+            <TextField id="fontLabel" fx:id="rebuyChipsField" alignment="CENTER_RIGHT" disable="true" maxWidth="130.0" onMouseClicked="#selectInField" HBox.margin="$x1">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <minHeight>
+                <Long fx:value="40" />
+              </minHeight>
+              <minWidth>
+                <Long fx:value="120" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </TextField>
+            <TextField id="fontLabel" fx:id="levelMaxRebuyField" alignment="CENTER_RIGHT" disable="true" maxWidth="130.0" onMouseClicked="#selectInField" HBox.margin="$x1">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <minHeight>
+                <Long fx:value="40" />
+              </minHeight>
+              <minWidth>
+                <Long fx:value="120" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </TextField>
+            <TextField id="fontLabel" fx:id="numMaxRebuyField" alignment="CENTER_RIGHT" disable="true" maxWidth="130.0" onMouseClicked="#selectInField">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <minHeight>
+                <Long fx:value="40" />
+              </minHeight>
+              <minWidth>
+                <Long fx:value="120" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </TextField>
+            <Label id="fontLabel" fx:id="maxRebuysLabel" maxWidth="86.0" prefHeight="40.0" prefWidth="86.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;&#10;-fx-padding: 0 0 0 13;" text="%rebuysLabel.text" textFill="WHITE">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <minWidth>
+                <Long fx:value="60" />
+              </minWidth>
+            </Label>
+          </children>
+          <prefHeight>
+            <Long fx:value="40" />
+          </prefHeight>
+          <VBox.margin>
+            <Insets top="-1.0" fx:id="x4" />
+          </VBox.margin>
+        </HBox>
+        <HBox prefWidth="200.0" VBox.margin="$x4" VBox.vgrow="NEVER">
+          <children>
+            <ToggleButton id="green" fx:id="toggleAddon" mnemonicParsing="false" onAction="#toggleAddOn" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" style="-fx-font-weight: bold;" text="%addonButton.text">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <maxWidth>
+                <Long fx:value="120" />
+              </maxWidth>
+              <minHeight>
+                <Long fx:value="40" />
+              </minHeight>
+              <minWidth>
+                <Long fx:value="120" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="200" />
+              </prefWidth>
+            </ToggleButton>
+            <TextField id="fontLabel" fx:id="costAddonField" alignment="CENTER_RIGHT" disable="true" onMouseClicked="#selectInField" style="-fx-font-weight: bold;&#10;-fx-padding: 0 24 0 0;&#10;-fx-font-size: 14px;" HBox.margin="$x3">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <maxWidth>
+                <Long fx:value="120" />
+              </maxWidth>
+              <minHeight>
+                <Long fx:value="26" />
+              </minHeight>
+              <minWidth>
+                <Long fx:value="120" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </TextField>
+            <Label fx:id="euroAddon" alignment="CENTER" disable="true" prefHeight="40.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="€">
+              <maxWidth>
+                <Long fx:value="24" />
+              </maxWidth>
+              <minWidth>
+                <Long fx:value="24" />
+              </minWidth>
+              <prefWidth>
+                <Long fx:value="24" />
+              </prefWidth>
+              <HBox.margin>
+                <Insets left="-25.0" right="-2.0" />
+              </HBox.margin>
+            </Label>
+            <TextField id="fontLabel" fx:id="chipsAddonField" alignment="CENTER_RIGHT" disable="true" onMouseClicked="#selectInField" HBox.margin="$x1">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <maxWidth>
+                <Long fx:value="120" />
+              </maxWidth>
+              <minHeight>
+                <Long fx:value="26" />
+              </minHeight>
+              <minWidth>
+                <Long fx:value="120" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </TextField>
+            <TextField id="fontLabel" alignment="CENTER_RIGHT" disable="true" editable="false" maxWidth="130.0" onMouseClicked="#selectInField" style="-fx-background-color:derive(-fx-base,+10%);" HBox.margin="$x1">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <minWidth>
+                <Long fx:value="120" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </TextField>
+            <TextField id="fontLabel" fx:id="numMaxAddonField" alignment="CENTER_RIGHT" disable="true" maxWidth="130.0" onMouseClicked="#selectInField">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <minWidth>
+                <Long fx:value="120" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </TextField>
+            <Label id="fontLabel" fx:id="addonsNameLabel" maxWidth="90.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;&#10;-fx-padding: 0 0 0 13;" text="%addonsLabel.text" textFill="WHITE">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="200" />
+              </prefWidth>
+            </Label>
+          </children>
+          <prefHeight>
+            <Long fx:value="40" />
+          </prefHeight>
+        </HBox>
+        <HBox prefWidth="200.0" VBox.margin="$x4">
+          <children>
+            <ToggleButton id="green" fx:id="toggleKnockout" maxWidth="130.0" mnemonicParsing="false" onAction="#toggleKnockout" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" style="-fx-font-weight: bold;&#10;-fx-padding: 0px -5px 0px -5px;" text="%KnockOutButton.text" wrapText="true">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <minHeight>
+                <Long fx:value="26" />
+              </minHeight>
+              <minWidth>
+                <Long fx:value="120" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </ToggleButton>
+            <TextField id="fontLabel" fx:id="costKnockoutField" alignment="CENTER_RIGHT" disable="true" maxWidth="130.0" onMouseClicked="#selectInField" style="-fx-padding: 0 24 0 0;&#10;-fx-font-size: 14px;&#10;-fx-font-weight: bold;&#10;" HBox.margin="$x3">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <minHeight>
+                <Long fx:value="26" />
+              </minHeight>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </TextField>
+            <Label fx:id="euroKnockout" alignment="CENTER" disable="true" prefHeight="40.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="€">
+              <minWidth>
+                <Long fx:value="24" />
+              </minWidth>
+              <prefWidth>
+                <Long fx:value="14" />
+              </prefWidth>
+              <HBox.margin>
+                <Insets left="-25.0" right="2.0" />
+              </HBox.margin>
+            </Label>
+            <Label id="fontLabel" fx:id="bountyLabel" alignment="CENTER" maxHeight="40.0" maxWidth="130.0" style="-fx-font-size: 14px;&#10;-fx-font-weight: bold;" text="%bountyLabel.text" textFill="WHITE">
+              <minWidth>
+                <Long fx:value="118" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+              <HBox.margin>
+                <Insets />
+              </HBox.margin>
+            </Label>
+          </children>
+          <maxHeight>
+            <Long fx:value="40" />
+          </maxHeight>
+          <prefHeight>
+            <Long fx:value="40" />
+          </prefHeight>
+        </HBox>
+        <HBox VBox.margin="$x4">
+          <children>
+            <Label id="fontLabel" minHeight="39.999900000002526" prefHeight="40.0" prefWidth="355.0" style="-fx-font-size: 18px;&#10;-fx-font-weight: bold;" text="%othersLabel.text" textFill="WHITE">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+            </Label>
+          </children>
+          <prefHeight>
+            <Long fx:value="40" />
+          </prefHeight>
+          <prefWidth>
+            <Long fx:value="140" />
+          </prefWidth>
+        </HBox>
+        <HBox prefWidth="200.0" VBox.margin="$x4">
+          <children>
+            <ToggleButton id="green" fx:id="entryFee" contentDisplay="CENTER" maxWidth="130.0" mnemonicParsing="false" onAction="#toggleFee" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" selected="true" style="-fx-padding: 0px -5px 0px -5px;" text="%entryFee.text">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <minHeight>
+                <Long fx:value="26" />
+              </minHeight>
+              <minWidth>
+                <Long fx:value="120" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </ToggleButton>
+            <TextField id="fontLabel" fx:id="organizationFeeField" alignment="CENTER_RIGHT" maxWidth="130.0" onMouseClicked="#selectInField" style="-fx-padding: 0 24 0 0;&#10;-fx-font-size: 14px;&#10;-fx-font-weight: bold;" text="0">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </TextField>
+            <Button id="green" fx:id="feeTypeButton" maxHeight="38.0" maxWidth="24.0" minHeight="38.0" minWidth="18.0" mnemonicParsing="false" onAction="#toggleFeePercentage" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefHeight="38.0" prefWidth="24.0" style="-fx-font-weight: bold;&#10;-fx-font-size: 16px;&#10;-fx-padding: 0 -3 0 -3;" text="€">
+              <HBox.margin>
+                <Insets left="-25.0" top="1.0" />
+              </HBox.margin>
+            </Button>
+          </children>
+          <prefHeight>
+            <Long fx:value="40" />
+          </prefHeight>
+        </HBox>
+        <HBox prefWidth="200.0">
+          <children>
+            <ToggleButton id="green" fx:id="externalFee" maxWidth="130.0" mnemonicParsing="false" onAction="#toggleExtFee" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" style="-fx-padding: 0px -5px 0px -5px;" text="%externalFee.text">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <minHeight>
+                <Long fx:value="26" />
+              </minHeight>
+              <minWidth>
+                <Long fx:value="83" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </ToggleButton>
+            <TextField id="fontLabel" fx:id="extOrganizationFeeField" alignment="CENTER_RIGHT" disable="true" maxWidth="130.0" onMouseClicked="#selectInField" style="-fx-font-weight: bold;&#10;-fx-padding: 0 24 0 0;&#10;-fx-font-size: 14px;" text="0">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </TextField>
+            <Label id="fontLabel" fx:id="perExternalFee" alignment="CENTER" disable="true" maxHeight="40.0" maxWidth="24.0" minWidth="24.0" prefHeight="40.0" prefWidth="24.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="\%" textFill="WHITE">
+              <minHeight>
+                <Long fx:value="40" />
+              </minHeight>
+              <HBox.margin>
+                <Insets left="-25.0" fx:id="x5" />
+              </HBox.margin>
+            </Label>
+          </children>
+          <prefHeight>
+            <Long fx:value="40" />
+          </prefHeight>
+          <VBox.margin>
+            <Insets right="-1.0" top="-1.0" />
+          </VBox.margin>
+        </HBox>
+        <HBox prefWidth="200.0" VBox.margin="$x4">
+          <children>
+            <ToggleButton id="green" fx:id="poolFee" maxWidth="130.0" mnemonicParsing="false" onAction="#togglePool" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" style="-fx-padding: 0px -5px 0px -5px;" text="%leaguePool.text">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <minHeight>
+                <Long fx:value="26" />
+              </minHeight>
+              <minWidth>
+                <Long fx:value="83" />
+              </minWidth>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </ToggleButton>
+            <TextField id="fontLabel" fx:id="leaguePoolField" alignment="CENTER_RIGHT" disable="true" maxWidth="130.0" onMouseClicked="#selectInField" style="-fx-font-weight: bold;&#10;-fx-padding: 0 24 0 0;&#10;-fx-font-size: 14px;" text="0">
+              <maxHeight>
+                <Long fx:value="40" />
+              </maxHeight>
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+              <prefWidth>
+                <Long fx:value="120" />
+              </prefWidth>
+            </TextField>
+            <Label id="fontLabel" fx:id="perLeaguePool" alignment="CENTER" disable="true" maxWidth="24.0" minWidth="24.0" prefWidth="24.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;&#10;" text="\%" textFill="WHITE" HBox.margin="$x5">
+              <prefHeight>
+                <Long fx:value="40" />
+              </prefHeight>
+            </Label>
+          </children>
+          <prefHeight>
+            <Long fx:value="40" />
+          </prefHeight>
+        </HBox>
+      </children>
+      <maxWidth>
+        <Long fx:value="680" />
+      </maxWidth>
+      <minWidth>
+        <Long fx:value="680" />
+      </minWidth>
+      <prefWidth>
+        <Long fx:value="680" />
+      </prefWidth>
+      <StackPane.margin>
+        <Insets bottom="30.0" left="30.0" right="230.0" top="30.0" />
+      </StackPane.margin>
+    </VBox>
+    <Label style="-fx-font-size: 32 px;" text="%formatTab.text" StackPane.alignment="TOP_LEFT">
+      <StackPane.margin>
+        <Insets left="30.0" top="30.0" />
+      </StackPane.margin>
+    </Label>
+  </children>
+  <prefHeight>
+    <Long fx:value="472" />
+  </prefHeight>
+  <prefWidth>
+    <Long fx:value="1000" />
+  </prefWidth>
+</StackPane>
