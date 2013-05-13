@@ -29,6 +29,7 @@ public class TournamentVisorController {
     private static final String DELETE_TOURNAMENT = "DELETE_TOURNAMENT";
     private static final String CLOSE_VISOR = "CLOSE_VISOR"; 
     private static final String UNLOCK = "UNLOCK";
+    private static final String FINISH_TOURNAMENT = "FINISH_TOURNAMENT";
   
     public static void poll(final ObservableList<VisorLocation> list) {
         Thread t = new Thread() {
@@ -109,6 +110,16 @@ public class TournamentVisorController {
         HTTPClient client = new HTTPClient();
         String[] stringLock = {"ID=" + ownerID, "NAME=" + owner};
         client.GET(visor.getIP(), LOCK, stringLock);
+    }
+    
+    public static void finishTournament(ObservableList<VisorLocation> list, long ownerID) throws IOException {
+        HTTPClient client;
+        for (VisorLocation visor : list) {
+            if (visor.getOwnerID() == ownerID) {
+                client = new HTTPClient();
+                client.GET(visor.getIP(), FINISH_TOURNAMENT, new String[1]);
+            }
+        }
     }
 
     public static void refreshTournamentDataView(final ObservableList<VisorLocation> list, final long ownerID, final TournamentDataView dataView) {

@@ -1,14 +1,9 @@
 package eventManager.model.pokerTournament;
 
-import eventManager.controller.VisorLocation;
-import eventManager.controller.pokerTournament.TournamentVisorController;
 import eventManager.model.Event;
-import eventManager.net.TournamentDataView;
 import eventManager.per.ObjectSerializer;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -26,10 +21,13 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 @XmlSeeAlso({TournamentConfiguration.class, Action.class, PlayerList.class, Level.class,
     Summary.class})
 public final class Tournament extends Event {
-    private final long ID = (long) (Math.random()*100000000);
+    private final long ID = (long) (Math.random() * 100000000);
     private SimpleStringProperty tournamentName = new SimpleStringProperty("");
     private SimpleStringProperty tournamentSubName = new SimpleStringProperty("");
+    private SimpleBooleanProperty soundAllowed = new SimpleBooleanProperty(true);
+    private SimpleIntegerProperty transcurredTime = new SimpleIntegerProperty(0);
     private SimpleBooleanProperty breakTime = new SimpleBooleanProperty(false);
+    private SimpleBooleanProperty finalizedTournament = new SimpleBooleanProperty(false);
     private enum stateType {PLAYING, PAUSED, BREAK, BREAK_PAUSED, INFINITE_BREAK, STOPPED, ED_BREAK, CR_BREAK, DB_BREAK};
     private stateType tournamentState = stateType.STOPPED;
     private TournamentConfiguration tournamentConfiguration;
@@ -39,18 +37,13 @@ public final class Tournament extends Event {
     private Summary summary;
     private ObservableList<Action> actionsHistory = FXCollections.observableList(new ArrayList<Action>());
     private ObservableList<Announcement> announcementList = FXCollections.observableList(new ArrayList<Announcement>());
-    private boolean anonymousTournament = true;
-    private boolean soundAlerted = false;
-    private SimpleBooleanProperty soundAllowed = new SimpleBooleanProperty(true);
-    private SimpleIntegerProperty transcurredTime = new SimpleIntegerProperty(0);
-    
+
 
     public Tournament(String name, TournamentConfiguration tc, ExecutorService service) {
         this.tournamentName.set(name);
         this.tournamentConfiguration = tc;
         summary = new Summary(tournamentConfiguration);
         summary.updateRegisteredPlayers(playerList.size());
-//        this.visorList = visorLists;
         soundAllowed.addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
@@ -67,7 +60,6 @@ public final class Tournament extends Event {
                 //TournamentVisorController.refreshTournamentDataView(visorList, ID, new TournamentDataView());
             }
         });
-        // Al cargar, asignar el tiempo al levelTimeService tb
     }
 
     public void addTimeListener(ExecutorService executor){
@@ -80,7 +72,6 @@ public final class Tournament extends Event {
                 int n;
                 if (t1.intValue() == 0) {
                     if (tournamentState == stateType.PLAYING) {
-                        //new AlertSound("temple.wav").start();
                         try {
                             n = Integer.parseInt(getLevelInProgress().getBreather());
                             if (n != 0) {
@@ -101,26 +92,36 @@ public final class Tournament extends Event {
                                     @Override
                                     public void run() {
                                         tournamentState = stateType.CR_BREAK;
+                                        int time = Integer.parseInt(getLevelInProgress().getBreather().substring(2));
+                                        getLevelTimeService().setLevelTime(time * 60);
                                         setBreakTime(true);
-                                        int time = Integer.parseInt(getLevelInProgress().getBreather().substring(2));
-                                        getLevelTimeService().setLevelTime(time * 60);
                                     }
                                 });
-                            }
-                            if (getLevelInProgress().getBreather().startsWith("ED")) {
-                                tournamentState = stateType.ED_BREAK;
-                                levelUp();
-                                getLevelTimeService().cancel();
-                            }
-                            if (getLevelInProgress().getBreather().startsWith("DB")) {
-                                Platform.runLater(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        tournamentState = stateType.DB_BREAK;
-                                        int time = Integer.parseInt(getLevelInProgress().getBreather().substring(2));
-                                        getLevelTimeService().setLevelTime(time * 60);
-                                    }
-                                });
+                            } else {
+                                if (getLevelInProgress().getBreather().startsWith("ED")) {
+                                    Platform.runLater(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            tournamentState = stateType.ED_BREAK;
+                                            System.out.println(breakTime.get());
+                                            setBreakTime(true);
+                                            levelUp();
+                                            getLevelTimeService().setLevelTime(getLevelInProgress().getTime() * 60);
+                                            getLevelTimeService().cancel();
+                                        }
+                                    });
+                                }
+                                if (getLevelInProgress().getBreather().startsWith("DB")) {
+                                    Platform.runLater(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            tournamentState = stateType.DB_BREAK;
+                                            int time = Integer.parseInt(getLevelInProgress().getBreather().substring(2));
+                                            getLevelTimeService().setLevelTime(time * 60);
+                                            setBreakTime(true);
+                                        }
+                                    });
+                                }
                             }
                         }
                     } else {
@@ -130,11 +131,11 @@ public final class Tournament extends Event {
                 } else {
                     if (t1.intValue() % 60 == 4) {
                         /*try {
-                            TournamentVisorController.refreshTime(visorList, getID(), getLevelTimeService().getLevelTime());
-                        } catch (IOException ex) {
-                            if (ex instanceof org.apache.http.conn.ConnectTimeoutException)
-                                Logger.getLogger(Tournament.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-                        }*/
+                         TournamentVisorController.refreshTime(visorList, getID(), getLevelTimeService().getLevelTime());
+                         } catch (IOException ex) {
+                         if (ex instanceof org.apache.http.conn.ConnectTimeoutException)
+                         Logger.getLogger(Tournament.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                         }*/
                     }
                     if (t1.intValue() % 300 == 0) {
                         saveTempTournament();
@@ -143,11 +144,7 @@ public final class Tournament extends Event {
             }
         });
     }
-    
-    public void setAnonymousPlayersProperty(boolean anonymousPlayersProperty) {
-        this.anonymousTournament = anonymousPlayersProperty;
-    }
-    
+
     @XmlAttribute
     public String getTournamentName() {
         return tournamentName.get();
@@ -157,6 +154,20 @@ public final class Tournament extends Event {
         this.tournamentName.set(tournamentName);
     }
 
+    
+    public SimpleBooleanProperty getFinalizedTournament() {
+        return finalizedTournament;
+    }
+    
+    @XmlAttribute
+    public boolean isFinalizedTournament() {
+        return finalizedTournament.get();
+    }
+
+    public void setFinalizedTournament(boolean finalizedTournament) {
+        this.finalizedTournament.set(finalizedTournament);
+    }
+    
     public long getID() {
         return ID;
     }
@@ -169,8 +180,6 @@ public final class Tournament extends Event {
     public void setTournamentSubName(String tournamentSubName) {
         this.tournamentSubName.set(tournamentSubName);
     }
-
-    
 
     public SimpleStringProperty tournamentSubNameProperty() {
         return tournamentSubName;
@@ -200,7 +209,7 @@ public final class Tournament extends Event {
     public SimpleBooleanProperty breakTimeProperty() {
         return breakTime;
     }
-
+ 
     @XmlElement
     public synchronized ObservableList<Announcement> getAnnouncementList() {
         return announcementList;
@@ -216,18 +225,8 @@ public final class Tournament extends Event {
         return levelTimeService;
     }
 
-    @XmlAttribute
-    public boolean isAnonymousTournament() {
-        return anonymousTournament;
-    }
-
     public void setTournamentState(String tournamentState) {
         this.tournamentState = stateType.valueOf(tournamentState);
-    }
-
-    @XmlElement
-    public boolean isSoundAlerted() {
-        return soundAlerted;
     }
 
     @XmlElement
@@ -279,9 +278,8 @@ public final class Tournament extends Event {
         }
         int aux;
         synchronized (getLevelTimeService()) {
-            
             String s = new String(getLevelTimeService().getMessage());
-            aux = getLevelInProgress().getTime() - getLevelTimeService().getLevelTime()/60;
+            aux = getLevelInProgress().getTime() - getLevelTimeService().getLevelTime() / 60;
         }
         synchronized (transcurredTime) {
             setTranscurredTime(getTranscurredTime() + aux);
@@ -324,6 +322,11 @@ public final class Tournament extends Event {
         });
     }
     
+    public void finalizeTournament(){
+        stopLevel();
+        setBreakTime(false);
+    }
+    
     @XmlElement
     public boolean isSoundAllowed() {
         return soundAllowed.get();
@@ -337,10 +340,6 @@ public final class Tournament extends Event {
         this.tournamentState = tournamentState;
     }
 
-    public void setAnonymousTournament(boolean anonymousTournament) {
-        this.anonymousTournament = anonymousTournament;
-    }
-
     @XmlElement
     public PlayerList getPlayerList() {
         return playerList;
@@ -351,22 +350,23 @@ public final class Tournament extends Event {
     }
 
     public synchronized void levelUp() {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                setLevelInProgress(levelInProgress.getLevel() + 1);
-                setBreakTime(false);
-                soundAlerted = false;
-                actionsHistory.add(0, new LevelAction("STARTED LEVEL " + (getLevelInProgress().getLevel()+1)+""));
-                updateTranscurredTime();
-            }
-        });
-
+        if (isLastLevel()) {
+            setFinalizedTournament(true);
+        } else {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    setLevelInProgress(levelInProgress.getLevel() + 1);
+                    setBreakTime(false);
+                    actionsHistory.add(0, new LevelAction("STARTED LEVEL " + (getLevelInProgress().getLevel() + 1) + ""));
+                    updateTranscurredTime();
+                }
+            });
+        }
     }
 
     public synchronized void levelDown() {
         setLevelInProgress(levelInProgress.getLevel() - 1);
-        soundAlerted = false;
         updateTranscurredTime();
         int i = 0;
         while (i < actionsHistory.size()) {
@@ -387,8 +387,6 @@ public final class Tournament extends Event {
 
     public void pauseLevel() {
         tournamentState = stateType.PAUSED;
-        int s = getTranscurredTime();
-        
         getLevelTimeService().cancel();
     }
 

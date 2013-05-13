@@ -639,13 +639,13 @@
                         </VBox>
                         <VBox id="VBox" alignment="TOP_CENTER" StackPane.alignment="TOP_RIGHT" StackPane.margin="$x6">
                           <children>
-                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="?" />
-                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="?" />
-                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="?" />
-                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="?" />
-                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="?" />
-                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="?" />
-                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="?" />
+                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="%euro.text" />
+                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="%euro.text" />
+                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="%euro.text" />
+                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="%euro.text" />
+                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="%euro.text" />
+                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="%euro.text" />
+                            <Label prefHeight="40.0" prefWidth="16.0" style="-fx-font-size: 16px;&#10;-fx-font-weight: bold;" text="%euro.text" />
                           </children>
                           <maxWidth>
                             <Long fx:value="20" />
@@ -700,7 +700,7 @@
                       </prefWidth>
                     </Label>
                     <Button id="finalizeTournamentButton" fx:id="initTournamentButton" layoutX="93.0" layoutY="255.0" mnemonicParsing="false" onAction="#startTournament" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefHeight="121.0" prefWidth="262.0" text="%start.text" />
-                    <Button fx:id="finalizeTournamentButton" layoutX="93.0" layoutY="255.0" mnemonicParsing="false" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefWidth="262.0" text="Finalizar" visible="false">
+                    <Button fx:id="finalizeTournamentButton" layoutX="93.0" layoutY="255.0" mnemonicParsing="false" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefWidth="262.0" text="%finalize.text" visible="false">
                       <prefHeight>
                         <Long fx:value="120" />
                       </prefHeight>

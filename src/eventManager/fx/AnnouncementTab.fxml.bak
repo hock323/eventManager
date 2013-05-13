@@ -101,7 +101,7 @@
                 <Long fx:value="0" />
               </translateZ>
             </Button>
-            <Label text="Sound Alerts">
+            <Label text="%soundAlerts.text">
               <minHeight>
                 <Long fx:value="40" />
               </minHeight>

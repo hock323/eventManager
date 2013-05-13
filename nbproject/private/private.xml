@@ -2,14 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="4">
         <file>
-            <url>src/cpttournamentmanager/model/Summary.java</url>
-            <bookmark id="3">
-                <name/>
-                <line>211</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
             <url>src/clptournamentmanager/controller/CreateTournament.java</url>
             <bookmark id="2">
                 <name/>
@@ -19,6 +11,14 @@
             <bookmark id="1">
                 <name/>
                 <line>617</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
+            <url>src/cpttournamentmanager/model/Summary.java</url>
+            <bookmark id="3">
+                <name/>
+                <line>211</line>
                 <key/>
             </bookmark>
         </file>

@@ -20,7 +20,7 @@
   <children>
     <TableView id="announcementTableColumn" fx:id="announcementTableView" editable="true" prefHeight="200.0" prefWidth="660.0" style="-fx-font-size: 16px;" StackPane.alignment="CENTER_LEFT">
       <columns>
-        <TableColumn text="%announcement.text" fx:id="announcement">
+        <TableColumn text="%announcement.text" fx:id="announcementColumn">
           <prefWidth>
             <Long fx:value="490" />
           </prefWidth>

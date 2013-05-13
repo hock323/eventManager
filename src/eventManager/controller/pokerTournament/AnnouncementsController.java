@@ -39,10 +39,9 @@ import javafx.util.Callback;
 
 public class AnnouncementsController implements Initializable {
 
-    private SimpleBooleanProperty tournamentChanged;
+    private SimpleBooleanProperty tournamentChanged, createMode;
     private String imageSource = "/eventManager/fx/icons/";
-    private MenuItem defaultAnnouncement;
-    private MenuItem deleteAnnouncement;
+    private MenuItem defaultAnnouncement, deleteAnnouncement;
     private Tournament tournament;
     private ResourceBundle resourceBundle;
     private ObservableList<Announcement> announcementObservableList = FXCollections.observableList(new ArrayList<Announcement>());;
@@ -50,12 +49,11 @@ public class AnnouncementsController implements Initializable {
     @FXML Button soundGeneralButton;
     @FXML ListView<Announcement> announcementList;
     @FXML TableView<Announcement> announcementTableView;
-    @FXML TableColumn<Announcement, String> announcement;
+    @FXML TableColumn<Announcement, String> announcementColumn;
     @FXML TableColumn<Announcement, Boolean> activeTableColumn;
     @FXML TableColumn<Announcement, Boolean> highlightTableColumn;
     @FXML TextField noticeTextField;
-    @FXML TextField alert1Field;
-    @FXML TextField alert2Field;
+    @FXML TextField alert1Field, alert2Field;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -71,7 +69,7 @@ public class AnnouncementsController implements Initializable {
     
     public void bind() {
         announcementTableView.getItems().setAll(tournament.getAnnouncementList());
-    } 
+    }
 
     public Tournament getTournament() {
         return tournament;
@@ -96,7 +94,11 @@ public class AnnouncementsController implements Initializable {
     public ObservableList<VisorLocation> getVisorList() {
         return visorList;
     }
-    
+
+    public void setCreateMode(SimpleBooleanProperty createMode) {
+        this.createMode = createMode;
+    }
+
     public void soundAllowCommand(ActionEvent e) {
         Button button = (Button) e.getSource();
         Image soundIcon = new Image(getClass().getResourceAsStream(imageSource + "icon_sound.png"));
@@ -114,17 +116,19 @@ public class AnnouncementsController implements Initializable {
                 tournament.setSoundAllowed(false);
             }
         }
-        tournamentChanged.set(true);
+        if (!createMode.get()) {
+            tournamentChanged.set(true);
+        }
     }
 
     public void chargeSavedAnnouncementList() {
         File dir = new File(ObjectDeserializer.DIR + ObjectDeserializer.ANNOUNCEMENT_DIR);
         String[] ficheros = dir.getAbsoluteFile().list();
-        Announcement announcement;
+        Announcement announcementVar;
         for (int x = 0; x < ficheros.length; x++) {
             if (!ficheros[x].startsWith(".") && ficheros[x].endsWith(".xml")) {
-                announcement = (Announcement) ObjectDeserializer.loadObject(ObjectDeserializer.ANNOUNCEMENT_OBJECT, ficheros[x]);
-                announcementObservableList.add(announcement);
+                announcementVar = (Announcement) ObjectDeserializer.loadObject(ObjectDeserializer.ANNOUNCEMENT_OBJECT, ficheros[x]);
+                announcementObservableList.add(announcementVar);
             }
         }
         announcementList.cellFactoryProperty();
@@ -146,14 +150,16 @@ public class AnnouncementsController implements Initializable {
                         tournament.getAnnouncementList().add(announcementList.getSelectionModel().getSelectedItem());
                         TournamentVisorController.refreshTournamentDataView(getVisorList(), tournament.getID(), new TournamentDataView(tournament));
                         announcementTableView.getItems().setAll(tournament.getAnnouncementList());
-                        tournamentChanged.set(true);
+                        if (!createMode.get()) {
+                            tournamentChanged.set(true);
+                        }
                     }
                 }
             }
         });
     }
-    
-    private void setContextMenuInListView(){
+
+    private void setContextMenuInListView() {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -170,10 +176,10 @@ public class AnnouncementsController implements Initializable {
             }
         });
     }
-    
+
     public void chargeAnnouncementStruct() {
         announcementTableView.setEditable(true);
-        announcement.setCellValueFactory(new PropertyValueFactory<Announcement, String>("announcement"));
+        announcementColumn.setCellValueFactory(new PropertyValueFactory<Announcement, String>("announcement"));
         highlightTableColumn.setCellValueFactory(new PropertyValueFactory<Announcement, Boolean>("highlight"));
         activeTableColumn.setCellValueFactory(new PropertyValueFactory<Announcement, Boolean>("active"));
         Callback<TableColumn<Announcement, Boolean>, TableCell<Announcement, Boolean>> cellBooleanFactory =
@@ -192,34 +198,43 @@ public class AnnouncementsController implements Initializable {
                 };
         highlightTableColumn.setCellFactory(cellBooleanFactory);
         activeTableColumn.setCellFactory(cellBooleanFactory);
-        announcement.setCellFactory(cellStringFactory);
-        announcement.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Announcement, String>>() {
+        announcementColumn.setCellFactory(cellStringFactory);
+        announcementColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Announcement, String>>() {
             @Override
             public void handle(TableColumn.CellEditEvent<Announcement, String> t) {
                 t.getTableView().getItems().get(t.getTablePosition().getRow()).setAnnouncement(t.getNewValue());
-                TournamentVisorController.refreshTournamentDataView(getVisorList(), tournament.getID(), new TournamentDataView(tournament));
-                tournamentChanged.set(true);
+                if (!createMode.get()) {
+                    updateChanges();
+                }
             }
         });
         highlightTableColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Announcement, Boolean>>() {
             @Override
             public void handle(TableColumn.CellEditEvent<Announcement, Boolean> t) {
                 t.getTableView().getItems().get(t.getTablePosition().getRow()).setHighlight(t.getNewValue());
-                TournamentVisorController.refreshTournamentDataView(getVisorList(), tournament.getID(), new TournamentDataView(tournament));
-                tournamentChanged.set(true);
+                if (!createMode.get()) {
+                    updateChanges();
+                }
             }
         });
         activeTableColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Announcement, Boolean>>() {
             @Override
             public void handle(TableColumn.CellEditEvent<Announcement, Boolean> t) {
                 t.getTableView().getItems().get(t.getTablePosition().getRow()).setActive(t.getNewValue());
-                TournamentVisorController.refreshTournamentDataView(getVisorList(), tournament.getID(), new TournamentDataView(tournament));
-                tournamentChanged.set(true);
+                if (!createMode.get()) {
+                    updateChanges();
+                }
             }
         });
-        
     }
-    
+
+    private void updateChanges() {
+        if (!createMode.get()) {
+            TournamentVisorController.refreshTournamentDataView(getVisorList(), tournament.getID(), new TournamentDataView(tournament));
+            tournamentChanged.set(true);
+        }
+    }
+
     private void setContextMenuInAnnouncementTableView() {
         Platform.runLater(new Runnable() {
             @Override
@@ -237,16 +252,19 @@ public class AnnouncementsController implements Initializable {
             }
         });
     }
-    
+
     public void publishNoticeCommand(ActionEvent e) {
         if (tournament != null) {
             if (!"".equals(noticeTextField.getText())) {
                 tournament.addNotice(noticeTextField.getText());
-                TournamentVisorController.refreshTournamentDataView(getVisorList(), tournament.getID(),new TournamentDataView(tournament));
+                TournamentVisorController.refreshTournamentDataView(getVisorList(), tournament.getID(), new TournamentDataView(tournament));
                 announcementTableView.getItems().setAll(tournament.getAnnouncementList());
                 noticeTextField.setText("");
             }
-            tournamentChanged.set(true);
+            if (!createMode.get()) {
+                TournamentVisorController.refreshTournamentDataView(getVisorList(), tournament.getID(), new TournamentDataView(tournament));
+                tournamentChanged.set(true);
+            }
         }
     }
 
@@ -261,9 +279,9 @@ public class AnnouncementsController implements Initializable {
         if (announcementList.getSelectionModel().getSelectedIndex() >= 0) {
             File dir = new File(ObjectDeserializer.DIR + ObjectDeserializer.ANNOUNCEMENT_DIR);
             String[] ficheros = dir.getAbsoluteFile().list();
-            String announcement = announcementList.getSelectionModel().getSelectedItem().getAnnouncement().substring(0, 10) + ".xml";
+            String announcementVar = announcementList.getSelectionModel().getSelectedItem().getAnnouncement().substring(0, 10) + ".xml";
             for (int x = 0; x < ficheros.length; x++) {
-                if (ficheros[x].equals(announcement)) {
+                if (ficheros[x].equals(announcementVar)) {
                     File fichero = new File(ObjectDeserializer.DIR + ObjectDeserializer.ANNOUNCEMENT_DIR + ObjectDeserializer.SEPARATOR + ficheros[x]);
                     fichero.delete();
                     announcementList.getItems().remove(announcementList.getSelectionModel().getSelectedItem());
@@ -275,7 +293,7 @@ public class AnnouncementsController implements Initializable {
             }
         }
     }
-   
+
     public void mouseEntered(MouseEvent e) {
         Node node = (Node) e.getSource();
         node.getScene().setCursor(Cursor.HAND);
@@ -290,6 +308,7 @@ public class AnnouncementsController implements Initializable {
     }
 
     private static class ComposeDefinedAnnouncementCell extends ListCell<Announcement> {
+
         @Override
         public void updateItem(Announcement item, boolean empty) {
             super.updateItem(item, empty);

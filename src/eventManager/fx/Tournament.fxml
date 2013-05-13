@@ -700,7 +700,7 @@
                       </prefWidth>
                     </Label>
                     <Button id="finalizeTournamentButton" fx:id="initTournamentButton" layoutX="93.0" layoutY="255.0" mnemonicParsing="false" onAction="#startTournament" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefHeight="121.0" prefWidth="262.0" text="%start.text" />
-                    <Button fx:id="finalizeTournamentButton" layoutX="93.0" layoutY="255.0" mnemonicParsing="false" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefWidth="262.0" text="%finalize.text" visible="false">
+                    <Button fx:id="finalizeTournamentButton" layoutX="93.0" layoutY="255.0" mnemonicParsing="false" onAction="#finalizeTournament" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefWidth="262.0" text="%finalize.text" visible="false">
                       <prefHeight>
                         <Long fx:value="120" />
                       </prefHeight>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<blindStruct duration="4" name="A_prueba">
+    <breakTypeList>None</breakTypeList>
+    <breakTypeList>Normal Break</breakTypeList>
+    <breakTypeList>Dinner Break</breakTypeList>
+    <breakTypeList>Chip Race</breakTypeList>
+    <breakTypeList>End Of Day</breakTypeList>
+    <levelList>
+        <ante>20</ante>
+        <bigBlind>200</bigBlind>
+        <breather>DB10</breather>
+        <level>1</level>
+        <smallBlind>200</smallBlind>
+        <time>1</time>
+    </levelList>
+    <levelList>
+        <ante>30</ante>
+        <bigBlind>300</bigBlind>
+        <breather>0</breather>
+        <level>2</level>
+        <smallBlind>300</smallBlind>
+        <time>1</time>
+    </levelList>
+    <levelList>
+        <ante>40</ante>
+        <bigBlind>400</bigBlind>
+        <breather>ED0</breather>
+        <level>3</level>
+        <smallBlind>40</smallBlind>
+        <time>1</time>
+    </levelList>
+    <levelList>
+        <ante>50</ante>
+        <bigBlind>500</bigBlind>
+        <breather>0</breather>
+        <level>4</level>
+        <smallBlind>50</smallBlind>
+        <time>1</time>
+    </levelList>
+</blindStruct>

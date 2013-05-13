@@ -12,7 +12,7 @@
   </resources>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="EventManager.jar" size="951628" download="eager" />
+    <jar href="EventManager.jar" size="959332" download="eager" />
     <jar href="lib/commons-codec-1.6.jar" size="232771" download="eager" />
     <jar href="lib/commons-logging-1.1.1.jar" size="60686" download="eager" />
     <jar href="lib/fluent-hc-4.2.1.jar" size="21886" download="eager" />

@@ -106,66 +106,26 @@ public class TournamentController implements Initializable {
             }
         }
     };
-    @FXML StackPane primePanel;
-    @FXML Pane configPane;
-    @FXML StackPane controlPane;
-    @FXML HBox createHelpPane;
-    @FXML Pane step1;
-    @FXML Pane step2;
-    @FXML Pane step3;
-    @FXML Pane step4;
-    @FXML Pane step5;
-    @FXML VBox registeredPane;
-    @FXML VBox reentriesPane;
-    @FXML VBox rebuysPane;
-    @FXML VBox addonsPane;
-    @FXML VBox playersPane;
-    @FXML VBox levelPane;
-    @FXML HBox registeredControlsPane;
-    @FXML HBox rebuysControlsPane;
-    @FXML HBox addonsControlsPane;
+    @FXML StackPane primePanel, controlPane;
+    @FXML Pane configPane, step1, step2, step3, step4, step5;
+    @FXML VBox registeredPane, reentriesPane, rebuysPane, addonsPane,playersPane, levelPane;
+    @FXML HBox createHelpPane, registeredControlsPane, rebuysControlsPane, addonsControlsPane;
     @FXML StackPane totalsPane;
-    @FXML ImageView step1Image;
-    @FXML ImageView step2Image;
-    @FXML ImageView step3Image;
-    @FXML ImageView step5Image;
-    @FXML Label registeredPlayersLabel;
-    @FXML Label livePlayersLabel;
-    @FXML Label numRebuysLabel;
-    @FXML Label numReentradasLabel;
-    @FXML Label numAddOnLabel;
-    @FXML Label numLevelLabel;
-    @FXML Label receiptsLabel;
-    @FXML Label handOutLabel;
-    @FXML Label bountiesLabel;
-    @FXML Label prizesLabel;
-    @FXML Label feeLabel;
-    @FXML Label orgExtFeeLabel;
-    @FXML Label leagueJackPotLabel;
-    @FXML Label timeLabel;   
-    @FXML Label breakLabel;
-    @FXML TextField nameField;
-    @FXML TextField subNameField;
-    @FXML TextField addAddonField;
-    @FXML TextField addRebuyField;    
-    @FXML TextField playerAddField;
+    @FXML ImageView step1Image, step2Image, step3Image, step5Image;
+    @FXML Label registeredPlayersLabel, livePlayersLabel, numRebuysLabel,numReentradasLabel,numAddOnLabel, numLevelLabel;
+    @FXML Label receiptsLabel, handOutLabel, bountiesLabel, prizesLabel;
+    @FXML Label feeLabel, orgExtFeeLabel, leagueJackPotLabel;
+    @FXML Label timeLabel, breakLabel;
+    @FXML TextField nameField, subNameField;
+    @FXML TextField playerAddField, addRebuyField, addAddonField;
     @FXML ComboBox<String> saveTemplateBox;
     @FXML ListView<Action> actionsListView;
-    @FXML Button addPlayerButton;
-    @FXML Button addAddOnButton;
-    @FXML Button addReentryButton;
-    @FXML Button addRebuyButton;
-    @FXML Button upLevelButton;
-    @FXML Button playButton;
-    @FXML Button pauseButton;
-    @FXML Button eliminatePlayerButton;
-    @FXML Button undoButton;
-    @FXML Button initTournamentButton;
-    @FXML Button finalizeTournamentButton;
+    @FXML Button upLevelButton, addRebuyButton,addReentryButton, addAddOnButton, addPlayerButton, eliminatePlayerButton;
+    @FXML Button playButton, pauseButton, undoButton;
+    @FXML Button initTournamentButton, finalizeTournamentButton;
     @FXML TabPane tabPane;
     @FXML TableView<VisorLocation> visorTableView;
-    @FXML TableColumn<VisorLocation, String> visorID;
-    @FXML TableColumn<VisorLocation, String> visorOwner;    
+    @FXML TableColumn<VisorLocation, String> visorID, visorOwner;  
     private MenuItem refreshVisorList;
     private ResourceBundle resourceBundle;
     private Tournament tournament = null;
@@ -362,6 +322,7 @@ public class TournamentController implements Initializable {
         formatController.setCreateMode(createMode);
         blindsController.setCreateMode(createMode);
         prizesController.setCreateMode(createMode);
+        announcementsController.setCreateMode(createMode);
         formatController.bind();
         blindsController.bind();
         prizesController.bind();
@@ -411,7 +372,9 @@ public class TournamentController implements Initializable {
         breakLabel.visibleProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
-                if (t1 == true && "ED_BREAK".equals(tournament.getTournamentStateString())) {
+                System.out.println("END of DAY");
+                if (t1 && "ED_BREAK".equals(tournament.getTournamentStateString())) {
+                    
                     pauseButton.setVisible(false);
                     playButton.setVisible(true);
                 }
@@ -453,6 +416,14 @@ public class TournamentController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
                 checkStep3.set(t1);
+            }
+        });
+        tournament.getFinalizedTournament().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
+                if (t1) {
+                    finalizeTournament(null);
+                }
             }
         });
     }
@@ -999,12 +970,16 @@ public class TournamentController implements Initializable {
     public void startTournament(ActionEvent e) {
         if (checkStep1.get() && checkStep2.get() && checkStep3.get() && checkStep4.get() && checkStep5.get()) {
             try {
-                TournamentVisorController.refreshTime(getVisorList(), tournament.getID(), tournament.getLevelTimeService().getLevelTime());
                 refreshSummary();
+                try {
+                    Thread.sleep(500);
+                    TournamentVisorController.refreshTime(getVisorList(), tournament.getID(), tournament.getLevelTimeService().getLevelTime());
+                } catch (InterruptedException ex) {}
                 setInitedState();
             } catch (IOException ex) {
                 if (ex instanceof SocketTimeoutException) {
                     try {
+                        refreshSummary();
                         TournamentVisorController.refreshTime(getVisorList(), tournament.getID(), tournament.getLevelTimeService().getLevelTime());
                     } catch (IOException ex1) {
                         Logger.getLogger(TournamentController.class.getName()).log(Level.SEVERE, null, ex1);
@@ -1025,14 +1000,22 @@ public class TournamentController implements Initializable {
                 } else {
                     if (!checkStep3.get()){
                         tabPane.getSelectionModel().select(2);
-                    }
-                        
+                    }            
                 }
             }
-            //System.out.println(checkStep1.get() +" "+ checkStep2.get() +" "+ checkStep3.get() +" "+ checkStep4.get() +" "+ checkStep5.get());
         }
     }
-        
+    
+    public void finalizeTournament(ActionEvent e){
+        try {
+            TournamentVisorController.finishTournament(getVisorList(), tournament.getID());
+        } catch (IOException ex) {}
+        System.out.println("finalizingTournament");
+        finalizeTournamentButton.setVisible(false);
+        tournament.finalizeTournament();
+        controlPane.setVisible(false);
+    }
+    
     private static class ComposeActionHistoryCell extends ListCell<Action> {
         @Override
         public void updateItem(Action item, boolean empty) {

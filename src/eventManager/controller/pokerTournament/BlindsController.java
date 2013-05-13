@@ -52,12 +52,7 @@ public class BlindsController implements Initializable{
     @FXML TableView<BlindStruct> blindStructListView;
     @FXML TableColumn<BlindStruct, String> nameColumn;
     @FXML TableColumn<BlindStruct, String> durationColumn;
-    @FXML TextField levelField;
-    @FXML TextField timeField;
-    @FXML TextField anteField;
-    @FXML TextField bigBlindField;
-    @FXML TextField smallBlindField;
-    @FXML TextField breakDurationField;
+    @FXML TextField levelField, timeField, anteField, smallBlindField, bigBlindField, breakDurationField;
     @FXML ComboBox<String> saveBlindBox;
     @FXML ChoiceBox<String> breakTypeBox;
     @FXML TableView<Level> blindStructTableView;
@@ -288,6 +283,7 @@ public class BlindsController implements Initializable{
                         @Override
                         public void run() {
                             try {
+                                int level = Integer.parseInt(levelField.getText());
                                 String duration = breakDurationField.getText();
                                 int x = Integer.parseInt(duration);
                                 if (x != 0) {
@@ -310,7 +306,14 @@ public class BlindsController implements Initializable{
                                     x = Integer.parseInt(breakDurationField.getText() + t.getCharacter());
                                     blindStructTableView.getSelectionModel().getSelectedItem().setBreather(x + "");
                                 }
+                                if (level == tournament.getLevelInProgress().getLevel()) {
+                                    tournament.getLevelInProgress().setBreather(breakDurationField.getText());
+                                }
                                 calculateTournamentDuration();
+                                if (!createMode.get()) {
+                                    TournamentVisorController.refreshTournamentDataView(getVisorList(), tournament.getID(), new TournamentDataView(tournament));
+                                    tournamentChanged.set(true);
+                                }
                             } catch (NumberFormatException | StringIndexOutOfBoundsException w) {
                                 String s = breakDurationField.getText();
                                 breakDurationField.setText(s.replace(t.getCharacter(), ""));
@@ -581,9 +584,11 @@ public class BlindsController implements Initializable{
         BlindStruct blinds = new BlindStruct();
         blinds.getLevelList().add(new Level(1, 1, 0, 0, 0, "0"));
         tournament.getTournamentConfiguration().setBlindStruct(blinds);
+        tournament.setLevelInProgress(tournament.getTournamentConfiguration().getBlindStruct().get(0));
+        tournament.getLevelTimeService().setLevelTime(tournament.getLevelInProgress().getTime()*60);
         blindStructTableView.setItems(tournament.getTournamentConfiguration().getBlindStruct().getLevelList());
         blindStructTableView.getSelectionModel().select(0);
-        
+        calculateTournamentDuration();
     }
 
     public void insert(ActionEvent e) {
