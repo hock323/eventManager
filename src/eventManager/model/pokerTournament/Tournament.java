@@ -358,7 +358,7 @@ public final class Tournament extends Event {
                 public void run() {
                     setLevelInProgress(levelInProgress.getLevel() + 1);
                     setBreakTime(false);
-                    actionsHistory.add(0, new LevelAction("STARTED LEVEL " + (getLevelInProgress().getLevel() + 1) + ""));
+                    actionsHistory.add(0, new LevelAction("NIVEL " + (getLevelInProgress().getLevel() + 1)));
                     updateTranscurredTime();
                 }
             });
@@ -370,7 +370,7 @@ public final class Tournament extends Event {
         updateTranscurredTime();
         int i = 0;
         while (i < actionsHistory.size()) {
-            if (actionsHistory.get(i).getAction().contains("LEVEL")) {
+            if (actionsHistory.get(i).getAction().contains("NIVEL")) {
                 actionsHistory.remove(i);
                 break;
             }
@@ -380,8 +380,6 @@ public final class Tournament extends Event {
 
     public void startLevel() {
         tournamentState = stateType.PLAYING;
-     //   actionsHistory.add(0, new LevelAction("START TOURNAMENT. "
-       //         + Calendar.getInstance().get(Calendar.HOUR_OF_DAY) + ":" + Calendar.getInstance().get(Calendar.MINUTE) + "h"));
         getLevelTimeService().start();
     }
 
@@ -421,7 +419,7 @@ public final class Tournament extends Event {
             summary.setEliminatedPlayers(summary.getEliminatedPlayers() - 1);
             int i = 0;
             while (i < actionsHistory.size()) {
-                if (actionsHistory.get(i).getAction().contains("PLAYER ELIMINATED")) {
+                if (actionsHistory.get(i).getAction().contains("JUGADOR ELIMINADO")) {
                     actionsHistory.remove(i);
                     break;
                 }
@@ -430,9 +428,9 @@ public final class Tournament extends Event {
         } else {
             summary.updateRegisteredPlayers(summary.getRegisteredPlayers() + n);
             if (n == 1) {
-                actionsHistory.add(0, new PlayerAction("PLAYER ADDED. ", playerList.get(playerList.size() - 1)));
+                actionsHistory.add(0, new PlayerAction("JUGADOR INSCRITO. ", playerList.get(playerList.size() - 1)));
             } else {
-                actionsHistory.add(0, new PlayerAction(n + " PLAYERS ADDED. ", playerList.get(playerList.size() - 1)));
+                actionsHistory.add(0, new PlayerAction(n + " JUGADORES INSCRITOS. ", playerList.get(playerList.size() - 1)));
 
             }
         }
@@ -443,15 +441,15 @@ public final class Tournament extends Event {
             summary.updateRegisteredPlayers(summary.getRegisteredPlayers() - 1);
             int i = 0;
             while (i < actionsHistory.size()) {
-                if (actionsHistory.get(i).getAction().contains("PLAYER ADDED") || actionsHistory.get(i).getAction().contains("PLAYERS ADDED")) {
-                    if (actionsHistory.get(i).getAction().contains("PLAYER ADDED")) {
+                if (actionsHistory.get(i).getAction().contains("JUGADOR INSCRITO") || actionsHistory.get(i).getAction().contains("JUGADORES INSCRITOS")) {
+                    if (actionsHistory.get(i).getAction().contains("JUGADOR INSCRITO")) {
                         actionsHistory.remove(i);
                     } else {
                         String s = actionsHistory.get(i).getAction();
                         int q = Integer.parseInt(s.substring(0, s.indexOf(" ")));
                         actionsHistory.remove(i);
                         if (q > 1)
-                            actionsHistory.add(i, new PlayerAction((q - 1) + " PLAYERS ADDED. ", playerList.get(playerList.size() - 1)));
+                            actionsHistory.add(i, new PlayerAction((q - 1) + " JUGADORES INSCRITOS. ", playerList.get(playerList.size() - 1)));
                     }
                     break;
                 }
@@ -459,7 +457,7 @@ public final class Tournament extends Event {
             }
         } else {
             summary.setEliminatedPlayers(summary.getEliminatedPlayers() + 1);
-            actionsHistory.add(0, new PlayerAction("PLAYER ELIMINATED. ", playerList.get(playerList.size() - 1)));
+            actionsHistory.add(0, new PlayerAction("JUGADOR ELIMINADO. ", playerList.get(playerList.size() - 1)));
         }
         playerList.substractPlayer();
     }
@@ -470,16 +468,16 @@ public final class Tournament extends Event {
         }
         summary.setRebuys(summary.getRebuys() + n);
         if (n == 1) {
-            actionsHistory.add(0, new PlayerAction("REBUY ADDED. ", playerList.get(ID)));
+            actionsHistory.add(0, new PlayerAction("REBUY AÑADIDO. ", playerList.get(ID)));
         } else {
-            actionsHistory.add(0, new PlayerAction(n + " REBUYS ADDED. ", playerList.get(ID)));
+            actionsHistory.add(0, new PlayerAction(n + " REBUYS AÑADIDOS. ", playerList.get(ID)));
         }
     }
 
     public void addReentrada(int ID) {
         playerList.addReentrada(ID);
         summary.updateReentries(summary.getReentradas() + 1);
-        actionsHistory.add(0, new PlayerAction("RE-ENTRY ADDED. ", playerList.get(ID)));
+        actionsHistory.add(0, new PlayerAction("RE-ENTRY AÑADIDO. ", playerList.get(ID)));
     }
 
     public void addAddon(int ID, int n) {
@@ -488,9 +486,9 @@ public final class Tournament extends Event {
         }
         summary.setAddons(summary.getAddons() + n);
         if (n == 1) {
-            actionsHistory.add(0, new PlayerAction("ADDON ADDED. ", playerList.get(ID)));
+            actionsHistory.add(0, new PlayerAction("ADDON AÑADIDO. ", playerList.get(ID)));
         } else {
-            actionsHistory.add(0, new PlayerAction(n + " ADDONS ADDED. ", playerList.get(ID)));
+            actionsHistory.add(0, new PlayerAction(n + " ADDONS AÑADIDOS. ", playerList.get(ID)));
         }
     }
 
@@ -499,15 +497,15 @@ public final class Tournament extends Event {
         summary.setRebuys(summary.getRebuys() - 1);
         int i = 0;
         while (i < actionsHistory.size()) {
-            if (actionsHistory.get(i).getAction().contains("REBUY ADDED") || actionsHistory.get(i).getAction().contains("REBUYS ADDED")) {
-                if (actionsHistory.get(i).getAction().contains("REBUY ADDED")) {
+            if (actionsHistory.get(i).getAction().contains("REBUY AÑADIDO") || actionsHistory.get(i).getAction().contains("REBUYS AÑADIDOS")) {
+                if (actionsHistory.get(i).getAction().contains("REBUY AÑADIDO")) {
                     actionsHistory.remove(i);
                 } else {
                     String s = actionsHistory.get(i).getAction();
                     int q = Integer.parseInt(s.substring(0, s.indexOf(" ")));
                     actionsHistory.remove(i);
                     if (q > 1) {
-                        actionsHistory.add(i, new PlayerAction((q - 1) + " REBUYS ADDED. ", playerList.get(ID)));
+                        actionsHistory.add(i, new PlayerAction((q - 1) + " REBUYS AÑADIDOS. ", playerList.get(ID)));
                     }
                 }
                 break;
@@ -521,7 +519,7 @@ public final class Tournament extends Event {
         summary.updateReentries(summary.getReentradas() - 1);
         int i = 0;
         while (i < actionsHistory.size()) {
-            if (actionsHistory.get(i).getAction().contains("RE-ENTRY ADDED")) {
+            if (actionsHistory.get(i).getAction().contains("RE-ENTRY AÑADIDO")) {
                 actionsHistory.remove(i);
                 break;
             }
@@ -534,15 +532,15 @@ public final class Tournament extends Event {
         summary.setAddons(summary.getAddons() - 1);
         int i = 0;
         while (i < actionsHistory.size()) {
-            if (actionsHistory.get(i).getAction().contains("ADDON ADDED") || actionsHistory.get(i).getAction().contains("ADDONS ADDED")) {
-                if (actionsHistory.get(i).getAction().contains("ADDON ADDED")) {
+            if (actionsHistory.get(i).getAction().contains("ADDON AÑADIDO") || actionsHistory.get(i).getAction().contains("ADDONS AÑADIDOS")) {
+                if (actionsHistory.get(i).getAction().contains("ADDON AÑADIDO")) {
                     actionsHistory.remove(i);
                 } else {
                     String s = actionsHistory.get(i).getAction();
                     int q = Integer.parseInt(s.substring(0, s.indexOf(" ")));
                     actionsHistory.remove(i);
                     if (q > 1) {
-                        actionsHistory.add(i, new PlayerAction((q - 1) + " ADDONS ADDED. ", playerList.get(ID)));
+                        actionsHistory.add(i, new PlayerAction((q - 1) + " ADDONS AÑADIDOS. ", playerList.get(ID)));
                     }
                 }
                 break;
@@ -578,5 +576,4 @@ public final class Tournament extends Event {
         levelTimeService.cancel();
         System.out.println(this.getTournamentName());
     }
-    
 }

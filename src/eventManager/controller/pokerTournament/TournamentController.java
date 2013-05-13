@@ -268,8 +268,7 @@ public class TournamentController implements Initializable {
         });
         chargeSaveTemplateBox();
     }
-
-    
+   
     private void loadTabs(){
         try {
             URL location = getClass().getResource("/eventManager/fx/FormatTab.fxml");
@@ -303,6 +302,7 @@ public class TournamentController implements Initializable {
             Logger.getLogger(TournamentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     public void setLoadedTournament(){
         tabPane.getSelectionModel().select(4);
     }
@@ -372,7 +372,6 @@ public class TournamentController implements Initializable {
         breakLabel.visibleProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
-                System.out.println("END of DAY");
                 if (t1 && "ED_BREAK".equals(tournament.getTournamentStateString())) {
                     
                     pauseButton.setVisible(false);
@@ -434,6 +433,7 @@ public class TournamentController implements Initializable {
             public void changed(ObservableValue<? extends Number> ov, Number t, Number t1) {
                 if (tournament.isLastLevel()) {
                     upLevelButton.setDisable(true);
+                    upLevelButton.setVisible(false);
                 }
                 if (tournament.getTournamentConfiguration().getRebuy() != null
                         && tournament.getLevelInProgress().getLevel()
@@ -660,6 +660,10 @@ public class TournamentController implements Initializable {
                 TournamentVisorController.setLevel(getVisorList(), tournament.getID(), tournament.getLevelInProgress().getLevel() + 1);
                 tournament.levelUp();
                 tournamentChanged.set(true);
+                if (tournament.isLastLevel()) {
+                    Button b = (Button) e.getSource();
+                    b.setDisable(true);
+                }
             } catch (IOException ex) {
                 if (ex instanceof NoHttpResponseException | ex instanceof HttpHostConnectException) {
                     TournamentVisorController.poll(getVisorList());
@@ -676,7 +680,7 @@ public class TournamentController implements Initializable {
         }
     }
     
-    @FXML public void downLevelCommand() {
+    public void downLevelCommand() {
         try {
             TournamentVisorController.setLevel(getVisorList(), tournament.getID(), tournament.getLevelInProgress().getLevel() - 1);
             tournament.levelDown();
@@ -696,6 +700,7 @@ public class TournamentController implements Initializable {
                 addReentryButton.setDisable(false);
             }
             tournamentChanged.set(true);
+            upLevelButton.setDisable(false);
         } catch (IOException ex) {
             if (ex instanceof NoHttpResponseException | ex instanceof HttpHostConnectException) {
                 TournamentVisorController.poll(getVisorList());
@@ -715,13 +720,13 @@ public class TournamentController implements Initializable {
      if (action.contains("RE-ENTRY")){
          undoReentryAdded();
      }
-     if (action.contains("PLAYER") && action.contains("ADDED")){
+     if (action.contains("JUGADOR") && action.contains("INSCRITO")){
          undoPlayerAdded();
      }
-     if (action.contains("PLAYER") && action.contains("ELIMINATED")){
+     if (action.contains("JUGADOR") && action.contains("ELIMINADO")){
          undoEliminatePlayer();
      }
-     if (action.contains("LEVEL")){
+     if (action.contains("NIVEL")){
          downLevelCommand();
          return;
      }
@@ -1006,14 +1011,14 @@ public class TournamentController implements Initializable {
         }
     }
     
-    public void finalizeTournament(ActionEvent e){
+    public void finalizeTournament(ActionEvent e) {
         try {
             TournamentVisorController.finishTournament(getVisorList(), tournament.getID());
-        } catch (IOException ex) {}
-        System.out.println("finalizingTournament");
-        finalizeTournamentButton.setVisible(false);
-        tournament.finalizeTournament();
-        controlPane.setVisible(false);
+            finalizeTournamentButton.setVisible(false);
+            tournament.finalizeTournament();
+            controlPane.setDisable(true);
+        } catch (IOException ex) {
+        }
     }
     
     private static class ComposeActionHistoryCell extends ListCell<Action> {
