@@ -37,6 +37,8 @@ public class EventSelectionDialogController implements Initializable {
     private final String SEPARATOR = System.getProperties().getProperty("file.separator");
     private final String RESOURCE_PATH = System.getProperties().getProperty("user.dir")
             + SEPARATOR + "eventManager" + SEPARATOR + "res" + SEPARATOR;
+    private final String iconSource = 
+            ResourceBundle.getBundle("eventManager.bundles.Bundle_es_ES", new Locale("es", "ES")).getString("imageSource.text");
     @FXML Pane loadTemplateButton;
     @FXML Pane openEventButton;
     @FXML Pane newEventButton;
@@ -53,6 +55,7 @@ public class EventSelectionDialogController implements Initializable {
     private SimpleStringProperty tournamentTemplateSelected = new SimpleStringProperty("");
     private SimpleStringProperty savedTournamentSelected = new SimpleStringProperty("");
     private ResourceBundle resourceBundle;
+    private enum EventType {NEW, TEMPLATE, SAVED};    
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -158,7 +161,7 @@ public class EventSelectionDialogController implements Initializable {
                 list.add(ficheros[x].substring(0, (ficheros[x].lastIndexOf("."))));
             }
         }
-        setInListView(list);
+        setInListView(list, EventType.SAVED);
     }
 
     private void chargeTournamentConfigurationList() {
@@ -171,7 +174,7 @@ public class EventSelectionDialogController implements Initializable {
                 list.add(ficheros[x].substring(0, (ficheros[x].lastIndexOf("."))));
             }
         }
-        setInListView(list);
+        setInListView(list, EventType.TEMPLATE);
     }
     
     public void movePointerTransition(Node nodo) {
@@ -221,7 +224,7 @@ public class EventSelectionDialogController implements Initializable {
             }
             Pane eventPane = createEventPane(name);
             newEventSelectedListener(eventPane);
-            addIconToEventPane(eventPane, name);
+            addIconToEventPane(eventPane, name, EventType.NEW);
             destiny.getChildren().add(eventPane);
             i++;
         }
@@ -259,19 +262,26 @@ public class EventSelectionDialogController implements Initializable {
         });
     }
     
-    private void addIconToEventPane(Pane eventPane, String eventName) {
-        String iconSource = ResourceBundle.getBundle("eventManager.bundles.Bundle_es_ES", new Locale("es", "ES")).getString("imageSource.text");
+    private void addIconToEventPane(Pane eventPane, String eventName, EventType eventType) {
         Image image;
         ImageView imageView;
         if ("Advertisement".equals(eventName)) {
             image = new Image(getClass().getResourceAsStream(iconSource + "advertise.png"));
         } else {
-            image = new Image(getClass().getResourceAsStream(iconSource + "spade.png"));
+            if (eventType.equals(EventType.SAVED)) {
+                image = new Image(getClass().getResourceAsStream(iconSource + "open_poker.png"));
+            } else {
+                if (eventType.equals(EventType.NEW)) {
+                    image = new Image(getClass().getResourceAsStream(iconSource + "spade.png"));
+                } else {
+                    image = new Image(getClass().getResourceAsStream(iconSource + "poker_template.png"));
+                }
+            }
         }
         imageView = new ImageView(image);
         imageView.setFitHeight(60);
         imageView.setFitWidth(60);
-        imageView.setLayoutX(25);
+        imageView.setLayoutX(28);
         imageView.setLayoutY(14);
         eventPane.getChildren().add(imageView);
 
@@ -305,7 +315,7 @@ public class EventSelectionDialogController implements Initializable {
         });
     }
     
-    private void setInListView(ObservableList<String> list) {
+    private void setInListView(ObservableList<String> list, EventType eventType) {
         HBox destiny = null;
         eventChooserPane.getChildren().clear();
         int i = 0;
@@ -316,7 +326,7 @@ public class EventSelectionDialogController implements Initializable {
                 eventChooserPane.getChildren().add(destiny);
             }
             Pane eventPane = createEventPane(name);
-            addIconToEventPane(eventPane, "Tournament");
+            addIconToEventPane(eventPane, "Tournament", eventType);
             eventPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent t) {
